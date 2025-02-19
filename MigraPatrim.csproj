@@ -117,11 +117,13 @@
     <Compile Include="Connections\PgConnect.cs" />
     <Compile Include="Controller\EnviarConfiguracaoOrganograma.cs" />
     <Compile Include="Controller\EnviarExercicios.cs" />
+    <Compile Include="Controller\EnviarOrganogramas.cs" />
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
     <Compile Include="DownloadSybase\Exercicios.cs" />
     <Compile Include="DownloadSybase\Organogramas.cs" />
     <Compile Include="Models\ModelCloud\ExercicioPOST.cs" />
     <Compile Include="Models\ModelPostgres\Exercicios.cs" />
+    <Compile Include="Models\ModelPostgres\Organogramas.cs" />
     <Compile Include="Models\ModelSybase\OrganogramaBethaDba.cs" />
     <Compile Include="Request\PostRequest.cs" />
     <Compile Include="Models\ModelCloud\BensGET.cs" />
@@ -151,12 +153,14 @@
     <Compile Include="Request\RequisicaoHttp.cs" />
     <Compile Include="UseCase\Configuracoes.cs" />
     <Compile Include="UseCase\Download.cs" />
+    <Compile Include="UseCase\EnvioDados.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="organograma.sql" />
     <Content Include="sql_tables.sql" />
   </ItemGroup>
   <ItemGroup />

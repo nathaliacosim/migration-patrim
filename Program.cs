@@ -29,13 +29,13 @@ public class Program
         pgConnection.Connect();
 
         /* Executando o processo de Download */
-        Download download = new Download(odbcConnection, pgConnection);
-        await download.Executar(tokenConversao);
+        //Download download = new Download(odbcConnection, pgConnection);
+        //await download.Executar();
 
-        //Configuracoes c = new Configuracoes(odbcConnection, pgConnection);
-        //c.Executar(tokenConversao);
+        /* Executando o processo de Envio dos Dados para Patrimonio Cloud CM Nova Andradina */
+        EnvioDados enviar = new EnvioDados(pgConnection, tokenConversao);
+        await enviar.Executar();
 
         Console.WriteLine("Processo finalizado.");
-        Console.ReadLine();
     }
 }

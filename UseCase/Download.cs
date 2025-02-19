@@ -14,7 +14,7 @@ public class Download
         _pgConnection = pgConnection;
     }
 
-    public async Task Executar(string tokenCliente)
+    public async Task Executar()
     {
         //var montarConfiguracoes = new DownloadSybase.ConfiguracaoOrganograma(_odbcConnection, _pgConnection);
         //var copiarExercicios = new DownloadSybase.Exercicios(_odbcConnection, _pgConnection);
