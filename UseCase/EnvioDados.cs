@@ -26,7 +26,10 @@ public class EnvioDados
         //EnviarTipoBem tiposBem = new EnviarTipoBem(_pgConnection, _token);
         //await tiposBem.EnviarTipoBemCloud();
 
-        EnviarTipoComprovante tipoComprovante = new EnviarTipoComprovante(_pgConnection, _token);
-        await tipoComprovante.EnviarTipoComprovanteCloud();
+        //EnviarTipoComprovante tipoComprovante = new EnviarTipoComprovante(_pgConnection, _token);
+        //await tipoComprovante.EnviarTipoComprovanteCloud();
+        
+        EnviarTipoUtilizacao tipoUtilizacao = new EnviarTipoUtilizacao(_pgConnection, _token);
+        await tipoUtilizacao.EnviarTipoUtilizacaoCloud();
     }
 }

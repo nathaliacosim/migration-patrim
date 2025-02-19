@@ -21,7 +21,10 @@ public class Configuracoes
         //TipoBem tipoBem = new TipoBem(_pgConnection);
         //await tipoBem.InserirRegistrosPadrao();
 
-        TipoComprovante tipoComprovante = new TipoComprovante(_pgConnection);
-        await tipoComprovante.InserirRegistrosPadrao();
+        //TipoComprovante tipoComprovante = new TipoComprovante(_pgConnection);
+        //await tipoComprovante.InserirRegistrosPadrao();
+        
+        TipoUtilizacao tipoUtilizacao = new TipoUtilizacao(_pgConnection);
+        await tipoUtilizacao.InserirRegistrosPadrao();
     }
 }
