@@ -1,6 +1,6 @@
-﻿using MigraPatrim.Connections;
+﻿using System.Threading.Tasks;
+using MigraPatrim.Connections;
 using MigraPatrim.DownloadSybase;
-using System.Threading.Tasks;
 
 namespace MigraPatrim.UseCase;
 
@@ -18,7 +18,10 @@ public class Configuracoes
         //MetodoDepreciacao metodoDepreciacao = new MetodoDepreciacao(_pgConnection);
         //await metodoDepreciacao.MontarRegistro();
 
-        TipoBem tipoBem = new TipoBem(_pgConnection);
-        await tipoBem.InserirRegistrosPadrao();
+        //TipoBem tipoBem = new TipoBem(_pgConnection);
+        //await tipoBem.InserirRegistrosPadrao();
+
+        TipoComprovante tipoComprovante = new TipoComprovante(_pgConnection);
+        await tipoComprovante.InserirRegistrosPadrao();
     }
 }

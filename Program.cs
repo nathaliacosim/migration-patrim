@@ -37,8 +37,8 @@ public class Program
         //await download.Executar();
 
         /* Executando o processo de Envio dos Dados para Patrimonio Cloud CM Nova Andradina */
-        EnvioDados enviar = new EnvioDados(pgConnection, tokenConversao);
-        await enviar.Executar();
+        //EnvioDados enviar = new EnvioDados(pgConnection, tokenConversao);
+        //await enviar.Executar();
 
         Console.WriteLine("Processo finalizado.");
     }

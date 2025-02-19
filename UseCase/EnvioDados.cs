@@ -1,9 +1,5 @@
 ﻿using MigraPatrim.Connections;
 using MigraPatrim.Controller;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MigraPatrim.UseCase;
@@ -21,13 +17,16 @@ public class EnvioDados
 
     public async Task Executar()
     {
-        //var organogramas = new EnviarOrganogramas(_pgConnection, _token);
+        //EnviarOrganogramas organogramas = new EnviarOrganogramas(_pgConnection, _token);
         //await organogramas.EnviarOrganogramasCloud();
 
-        //var metodosDepreciacao = new EnviarMetodoDepreciacao(_pgConnection, _token);
+        //EnviarMetodoDepreciacao metodosDepreciacao = new EnviarMetodoDepreciacao(_pgConnection, _token);
         //await metodosDepreciacao.EnviarMetodoDepreCloud();
 
-        var tiposBem = new EnviarTipoBem(_pgConnection, _token);
-        await tiposBem.EnviarTipoBemCloud();
+        //EnviarTipoBem tiposBem = new EnviarTipoBem(_pgConnection, _token);
+        //await tiposBem.EnviarTipoBemCloud();
+
+        EnviarTipoComprovante tipoComprovante = new EnviarTipoComprovante(_pgConnection, _token);
+        await tipoComprovante.EnviarTipoComprovanteCloud();
     }
 }
