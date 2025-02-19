@@ -28,6 +28,10 @@ public class Program
         var pgConnection = new PgConnect(host, port, database, username, password);
         pgConnection.Connect();
 
+        /* Executando o processo de Configuração */
+        //Configuracoes config = new Configuracoes(pgConnection);
+        //await config.Executar();
+
         /* Executando o processo de Download */
         //Download download = new Download(odbcConnection, pgConnection);
         //await download.Executar();

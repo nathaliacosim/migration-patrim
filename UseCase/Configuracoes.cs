@@ -1,21 +1,21 @@
 ﻿using MigraPatrim.Connections;
+using MigraPatrim.DownloadSybase;
+using System.Threading.Tasks;
 
 namespace MigraPatrim.UseCase;
 
 public class Configuracoes
 {
-    private readonly OdbcConnect _odbcConnection;
     private readonly PgConnect _pgConnection;
 
-    public Configuracoes(OdbcConnect odbcConnection, PgConnect pgConnection)
+    public Configuracoes(PgConnect pgConnection)
     {
-        _odbcConnection = odbcConnection;
         _pgConnection = pgConnection;
     }
 
-    public void Executar(string tokenCliente)
+    public async Task Executar()
     {
-        //var enviarConfigOrganograma = new Controller.EnviarConfiguracaoOrganograma(_pgConnection, tokenCliente);
-        var enviarExercicios = new Controller.EnviarExercicios(_pgConnection, tokenCliente);
+        MetodoDepreciacao metodoDepreciacao = new MetodoDepreciacao(_pgConnection);
+        await metodoDepreciacao.MontarRegistro();
     }
 }

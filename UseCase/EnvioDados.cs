@@ -1,4 +1,5 @@
 ﻿using MigraPatrim.Connections;
+using MigraPatrim.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,10 @@ public class EnvioDados
 
     public async Task Executar()
     {
-        var organogramas = new Controller.EnviarOrganogramas(_pgConnection, _token);
-        await organogramas.EnviarOrganogramasCloud();
+        //var organogramas = new EnviarOrganogramas(_pgConnection, _token);
+        //await organogramas.EnviarOrganogramasCloud();
+
+        var metodosDepreciacao = new EnviarMetodoDepreciacao(_pgConnection, _token);
+        await metodosDepreciacao.EnviarMetodoDepreCloud();
     }
 }
