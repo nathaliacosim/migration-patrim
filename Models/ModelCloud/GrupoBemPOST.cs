@@ -6,9 +6,8 @@ public class GrupoBemPOST
     public string descricao { get; set; }
     public TipoBemGrupoBemPOST tipoBem { get; set; }
     public MetodoDepreciacaoGrupoBemPOST metodoDepreciacao { get; set; }
-    public int percentualDepreciacaoAnual { get; set; }
-    public int percentualValorResidual { get; set; }
-    public int vidaUtil { get; set; }
+    public decimal percentualDepreciacaoAnual { get; set; }
+    public decimal percentualValorResidual { get; set; }
 }
 
 public class MetodoDepreciacaoGrupoBemPOST
