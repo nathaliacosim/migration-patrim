@@ -119,8 +119,10 @@
     <Compile Include="Controller\EnviarExercicios.cs" />
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
     <Compile Include="DownloadSybase\Exercicios.cs" />
+    <Compile Include="DownloadSybase\Organogramas.cs" />
     <Compile Include="Models\ModelCloud\ExercicioPOST.cs" />
     <Compile Include="Models\ModelPostgres\Exercicios.cs" />
+    <Compile Include="Models\ModelSybase\OrganogramaBethaDba.cs" />
     <Compile Include="Request\PostRequest.cs" />
     <Compile Include="Models\ModelCloud\BensGET.cs" />
     <Compile Include="Models\ModelCloud\BensPOST.cs" />

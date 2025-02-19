@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using MigraPatrim.Connections;
 using MigraPatrim.UseCase;
 
@@ -6,7 +7,7 @@ namespace MigraPatrim;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var tokenConversao = "5dcd336d-a577-4062-af6c-8d524ebedde3";
         Console.WriteLine($"Token de conversão: {tokenConversao}");
@@ -27,13 +28,14 @@ public class Program
         var pgConnection = new PgConnect(host, port, database, username, password);
         pgConnection.Connect();
 
+        /* Executando o processo de Download */
+        Download download = new Download(odbcConnection, pgConnection);
+        await download.Executar(tokenConversao);
 
-        //Download d = new Download(odbcConnection, pgConnection);
-        //d.Executar(tokenConversao);
+        //Configuracoes c = new Configuracoes(odbcConnection, pgConnection);
+        //c.Executar(tokenConversao);
 
-        Configuracoes c = new Configuracoes(odbcConnection, pgConnection);
-        c.Executar(tokenConversao);
-
+        Console.WriteLine("Processo finalizado.");
         Console.ReadLine();
     }
 }
