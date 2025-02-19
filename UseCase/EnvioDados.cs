@@ -24,7 +24,10 @@ public class EnvioDados
         //var organogramas = new EnviarOrganogramas(_pgConnection, _token);
         //await organogramas.EnviarOrganogramasCloud();
 
-        var metodosDepreciacao = new EnviarMetodoDepreciacao(_pgConnection, _token);
-        await metodosDepreciacao.EnviarMetodoDepreCloud();
+        //var metodosDepreciacao = new EnviarMetodoDepreciacao(_pgConnection, _token);
+        //await metodosDepreciacao.EnviarMetodoDepreCloud();
+
+        var tiposBem = new EnviarTipoBem(_pgConnection, _token);
+        await tiposBem.EnviarTipoBemCloud();
     }
 }

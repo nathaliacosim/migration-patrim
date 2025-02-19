@@ -20,10 +20,10 @@ public class TipoBem
 
         var registros = new[]
         {
-            new { id_cloud = Guid.NewGuid().ToString(), descricao = "Imóveis", classificacao = "IMOVEIS" },
-            new { id_cloud = Guid.NewGuid().ToString(), descricao = "Intangíveis", classificacao = "INTANGIVEIS" },
-            new { id_cloud = Guid.NewGuid().ToString(), descricao = "Móveis", classificacao = "MOVEIS" },
-            new { id_cloud = Guid.NewGuid().ToString(), descricao = "Recursos Naturais", classificacao = "RECURSOS_NATURAIS" }
+            new { id_cloud = "", descricao = "Imóveis", classificacao = "IMOVEIS" },
+            new { id_cloud = "", descricao = "Intangíveis", classificacao = "INTANGIVEIS" },
+            new { id_cloud = "", descricao = "Móveis", classificacao = "MOVEIS" },
+            new { id_cloud = "", descricao = "Recursos Naturais", classificacao = "RECURSOS_NATURAIS" }
         };
 
         try

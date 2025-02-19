@@ -15,7 +15,10 @@ public class Configuracoes
 
     public async Task Executar()
     {
-        MetodoDepreciacao metodoDepreciacao = new MetodoDepreciacao(_pgConnection);
-        await metodoDepreciacao.MontarRegistro();
+        //MetodoDepreciacao metodoDepreciacao = new MetodoDepreciacao(_pgConnection);
+        //await metodoDepreciacao.MontarRegistro();
+
+        TipoBem tipoBem = new TipoBem(_pgConnection);
+        await tipoBem.InserirRegistrosPadrao();
     }
 }
