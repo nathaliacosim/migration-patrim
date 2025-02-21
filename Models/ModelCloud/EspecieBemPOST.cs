@@ -2,7 +2,6 @@
 
 public class EspecieBemPOST
 {
-    public int id { get; set; }
     public GrupoBemEspecieBemPOST grupoBem { get; set; }
     public string descricao { get; set; }
 }

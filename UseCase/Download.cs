@@ -23,7 +23,13 @@ public class Download
         //Organogramas organogramas = new Organogramas(_odbcConnection, _pgConnection);
         //await organogramas.InsertIntoOrganogramas();
 
-        GrupoBem grupoBem = new GrupoBem(_odbcConnection, _pgConnection);
-        await grupoBem.InserirGrupos();
+        //GrupoBem grupoBem = new GrupoBem(_odbcConnection, _pgConnection);
+        //await grupoBem.InserirGrupos();
+
+        //EspecieBem especieBem = new EspecieBem(_odbcConnection, _pgConnection);
+        //await especieBem.InsertIntoEspecies();
+
+        Responsavel resp = new Responsavel(_odbcConnection, _pgConnection);
+        await resp.InsertIntoResponsaveis();
     }
 }

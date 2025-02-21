@@ -116,34 +116,44 @@
     <Compile Include="Connections\OdbcConnect.cs" />
     <Compile Include="Connections\PgConnect.cs" />
     <Compile Include="Controller\EnviarConfiguracaoOrganograma.cs" />
+    <Compile Include="Controller\EnviarEspecieBem.cs" />
     <Compile Include="Controller\EnviarExercicios.cs" />
     <Compile Include="Controller\EnviarGrupoBem.cs" />
     <Compile Include="Controller\EnviarMetodoDepreciacao.cs" />
     <Compile Include="Controller\EnviarOrganogramas.cs" />
+    <Compile Include="Controller\EnviarResponsaveis.cs" />
     <Compile Include="Controller\EnviarTipoBem.cs" />
     <Compile Include="Controller\EnviarTipoComprovante.cs" />
     <Compile Include="Controller\EnviarTipoUtilizacao.cs" />
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
+    <Compile Include="DownloadSybase\EspecieBem.cs" />
     <Compile Include="DownloadSybase\Exercicios.cs" />
     <Compile Include="DownloadSybase\GrupoBem.cs" />
     <Compile Include="DownloadSybase\MetodoDepreciacao.cs" />
     <Compile Include="DownloadSybase\Organogramas.cs" />
+    <Compile Include="DownloadSybase\Responsavel.cs" />
     <Compile Include="DownloadSybase\TipoBem.cs" />
     <Compile Include="DownloadSybase\TipoComprovante.cs" />
     <Compile Include="DownloadSybase\TipoUtilizacao.cs" />
     <Compile Include="Models\ModelCloud\ExercicioPOST.cs" />
+    <Compile Include="Models\ModelCloud\ResponsavelPOST.cs" />
     <Compile Include="Models\ModelCloud\TipoBemPOST.cs" />
     <Compile Include="Models\ModelCloud\TipoComprovantePOST.cs" />
     <Compile Include="Models\ModelCloud\TipoUtilizacaoPOST.cs" />
+    <Compile Include="Models\ModelPostgres\EspecieBem.cs" />
     <Compile Include="Models\ModelPostgres\Exercicios.cs" />
     <Compile Include="Models\ModelPostgres\GrupoBem.cs" />
     <Compile Include="Models\ModelPostgres\MetodoDepreciacao.cs" />
     <Compile Include="Models\ModelPostgres\Organogramas.cs" />
+    <Compile Include="Models\ModelPostgres\Responsavel.cs" />
     <Compile Include="Models\ModelPostgres\TipoBem.cs" />
     <Compile Include="Models\ModelPostgres\TipoComprovante.cs" />
     <Compile Include="Models\ModelPostgres\TipoUtilizacao.cs" />
+    <Compile Include="Models\ModelSybase\DetalhamentoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\GrupoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\OrganogramaBethaDba.cs" />
+    <Compile Include="Models\ModelSybase\ResponsavelBethaDba.cs" />
+    <Compile Include="Models\ModelSybase\TipoNaturezaBethaDba.cs" />
     <Compile Include="Request\PostRequest.cs" />
     <Compile Include="Models\ModelCloud\BensGET.cs" />
     <Compile Include="Models\ModelCloud\BensPOST.cs" />
@@ -179,6 +189,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="especies.sql" />
     <Content Include="organograma.sql" />
     <Content Include="sql_tables.sql" />
   </ItemGroup>
