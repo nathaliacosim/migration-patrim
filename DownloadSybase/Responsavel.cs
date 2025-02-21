@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using MigraPatrim.Connections;
-using MigraPatrim.Models.ModelPostgres;
 using MigraPatrim.Models.ModelSybase;
 using System;
 using System.Collections.Generic;
@@ -42,75 +41,42 @@ namespace MigraPatrim.DownloadSybase
 
         public async Task InsertIntoResponsaveis()
         {
-            var dadosList = await BuscarResponsaveis();
-
-            foreach (var item in dadosList)
+            var dados = await BuscarResponsaveis();
+            foreach (var item in dados)
             {
-                var parametros = CriarParametros(item);
+                const string checkExistsQuery = @"SELECT COUNT(1) FROM responsaveis_cloud WHERE nome = @nome and cpf = @cpf";
+                const string insertQuery = @"INSERT INTO responsaveis_cloud (id_cloud, i_responsavel, nome, cpf, funcao, observacoes) 
+                                         VALUES (@id_cloud, @i_responsavel, @nome, @cpf, @funcao, @observacoes)";
 
-                if (await RegistroExiste(parametros.Nome))
+                var parametros = new
                 {
-                    Console.WriteLine("Registro já existente.");
-                    continue;
-                }
-
-                await InserirRegistro(parametros);
-            }
-        }
-
-        private async Task<bool> RegistroExiste(string nome)
-        {
-            const string query = "SELECT COUNT(1) FROM responsaveis_cloud WHERE nome = @nome";
-
-            using var connection = _pgConnection.GetConnection();
-            return await connection.ExecuteScalarAsync<int>(query, new { nome }) > 0;
-        }
-
-        private async Task InserirRegistro(object parametros)
-        {
-            const string insertQuery = @"
-                INSERT INTO responsaveis_cloud (id_cloud, i_responsavel, nome, cpf, funcao, vinculado, observacoes) 
-                VALUES (@IdCloud, @IResponsavel, @Nome, @Cpf, @Funcao, @Vinculado, @Observacoes)";
-
-            try
-            {
-                using var connection = _pgConnection.GetConnection();
-                await connection.ExecuteAsync(insertQuery, parametros);
-                Console.WriteLine("Registro inserido com sucesso.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao inserir registro: {ex.Message}");
-            }
-        }
-
-        private dynamic CriarParametros(ResponsavelBethaDba item)
-        {
-            // IDs específicos com valores fixos
-            if (new[] { 14, 16, 19, 26 }.Contains(item.i_respons))
-            {
-                return new
-                {
-                    IdCloud = "",
-                    IResponsavel = 14,
-                    Nome = "SUELEN STEFANINI DE SOUZA SILVA",
-                    Cpf = "64550945060",
-                    Funcao = "RECEPCIONISTA",
-                    Vinculado = "16, 19, 26",
-                    Observacoes = "CPF gerado em 4DEVS"
+                    id_cloud = "",
+                    i_responsavel = item.i_respons,
+                    nome = item.nome.ToUpper(),
+                    item.cpf,
+                    funcao = item.funcao == null ? "" : item.funcao.ToUpper(),
+                    observacoes = new[] { 24, 26, 28, 60, 83 }.Contains(item.i_respons) ? "CPF gerado em 4DEVS" : ""
                 };
-            }
 
-            return new
-            {
-                IdCloud = "",
-                IResponsavel = item.i_respons,
-                Nome = item.nome.ToUpper(),
-                Cpf = item.cpf,
-                Funcao = item.funcao == null ? "" : item.funcao.ToUpper(),
-                Vinculado = item.i_respons == 21 ? "46" : "",
-                Observacoes = new[] { 60, 83, 28, 24 }.Contains(item.i_respons) ? "CPF gerado em 4DEVS" : ""
-            };
+                try
+                {
+                    int count = _pgConnection.ExecuteScalar<int>(checkExistsQuery, parametros);
+
+                    if (count == 0)
+                    {
+                        _pgConnection.Execute(insertQuery, parametros);
+                        Console.WriteLine("Registro inserido com sucesso.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Registro já existente.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro ao inserir responsaveis_cloud: {ex.Message}");
+                }
+            }
         }
     }
 }

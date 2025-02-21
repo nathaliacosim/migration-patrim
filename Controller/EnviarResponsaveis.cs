@@ -48,6 +48,7 @@ public class EnviarResponsaveis
                 cpf = item.cpf,
                 funcao = item.funcao
             });
+            
 
             Console.WriteLine($"Enviando dados: {json}\n");
 
