@@ -73,8 +73,8 @@ public class GrupoBem
             var tipo_bem_id_cloud = GetIdTipoBem(pesquisaTipo);
             var metodo_depre_id_cloud = GetIdMetodoDepreciacao("LINEAR_OU_COTAS_CONSTANTES");
 
-            const string checkExistsQuery = @"SELECT COUNT(1) FROM grupo_bem WHERE descricao = @descricao";
-            const string insertQuery = @"INSERT INTO grupo_bem 
+            const string checkExistsQuery = @"SELECT COUNT(1) FROM grupo_bem_cloud WHERE descricao = @descricao";
+            const string insertQuery = @"INSERT INTO grupo_bem_cloud 
                                            (id_cloud, i_conta, descricao, id_tipo_bem, id_metodo_depreciacao,
                                             percentual_depreciacao, percentual_residual, vida_util,
                                             sigla_tipo_bem, sigla_tipo_conta, sigla_classif_conta) 
@@ -113,7 +113,7 @@ public class GrupoBem
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao inserir grupo_bem: {ex.Message}");
+                Console.WriteLine($"Erro ao inserir grupo_bem_cloud: {ex.Message}");
             }
         }
     }

@@ -22,7 +22,7 @@ public class EnviarGrupoBem
 
     public async Task<List<Models.ModelPostgres.GrupoBem>> BuscarGrupoBem()
     {
-        const string query = "SELECT * FROM public.grupo_bem";
+        const string query = "SELECT * FROM public.grupo_bem_cloud";
         try
         {
             using var connection = _pgConnection.GetConnection();
@@ -30,7 +30,7 @@ public class EnviarGrupoBem
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao buscar grupo_bem: {ex.Message}");
+            Console.WriteLine($"Erro ao buscar grupo_bem_cloud: {ex.Message}");
             return new List<Models.ModelPostgres.GrupoBem>();
         }
     }
@@ -63,7 +63,7 @@ public class EnviarGrupoBem
                 var resposta = await _postRequest.Send(json).ConfigureAwait(false);
                 if (TryParseErrorResponse(resposta, out var errorMessage))
                 {
-                    Console.WriteLine($"Erro ao enviar grupo_bem {item.id}: {errorMessage}\n");
+                    Console.WriteLine($"Erro ao enviar grupo_bem_cloud {item.id}: {errorMessage}\n");
                 }
                 else
                 {
@@ -74,11 +74,11 @@ public class EnviarGrupoBem
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao enviar grupo_bem {item.id}: {ex.Message}\n");
+                Console.WriteLine($"Erro ao enviar grupo_bem_cloud {item.id}: {ex.Message}\n");
             }
         }
 
-        Console.WriteLine("FINALIZADO: grupo_bem.\n\n");
+        Console.WriteLine("FINALIZADO: grupo_bem_cloud.\n\n");
         return lotesIds;
     }
 
@@ -98,16 +98,16 @@ public class EnviarGrupoBem
 
     public async Task AtualizarIdCloud(int id, string idCloud)
     {
-        const string query = "UPDATE grupo_bem SET id_cloud = @idCloud WHERE id = @id";
+        const string query = "UPDATE grupo_bem_cloud SET id_cloud = @idCloud WHERE id = @id";
 
         try
         {
             await _pgConnection.ExecuteAsync(query, new { id, idCloud });
-            Console.WriteLine($"ID Cloud atualizado para grupo_bem {id}: {idCloud}");
+            Console.WriteLine($"ID Cloud atualizado para grupo_bem_cloud {id}: {idCloud}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao atualizar ID Cloud para grupo_bem {id}: {ex.Message}");
+            Console.WriteLine($"Erro ao atualizar ID Cloud para grupo_bem_cloud {id}: {ex.Message}");
         }
     }
 }
