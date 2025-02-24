@@ -29,7 +29,10 @@ public class Download
         //EspecieBem especieBem = new EspecieBem(_odbcConnection, _pgConnection);
         //await especieBem.InsertIntoEspecies();
 
-        Responsavel resp = new Responsavel(_odbcConnection, _pgConnection);
-        await resp.InsertIntoResponsaveis();
+        //Responsavel resp = new Responsavel(_odbcConnection, _pgConnection);
+        //await resp.InsertIntoResponsaveis();
+
+        Fornecedor fornec = new Fornecedor(_odbcConnection, _pgConnection);
+        await fornec.InsertIntoFornecedor();
     }
 }

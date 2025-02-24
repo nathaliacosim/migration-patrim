@@ -128,6 +128,7 @@
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
     <Compile Include="DownloadSybase\EspecieBem.cs" />
     <Compile Include="DownloadSybase\Exercicios.cs" />
+    <Compile Include="DownloadSybase\Fornecedor.cs" />
     <Compile Include="DownloadSybase\GrupoBem.cs" />
     <Compile Include="DownloadSybase\MetodoDepreciacao.cs" />
     <Compile Include="DownloadSybase\Organogramas.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Models\ModelPostgres\TipoComprovante.cs" />
     <Compile Include="Models\ModelPostgres\TipoUtilizacao.cs" />
     <Compile Include="Models\ModelSybase\DetalhamentoBethaDba.cs" />
+    <Compile Include="Models\ModelSybase\FornecedorBethaDba.cs" />
     <Compile Include="Models\ModelSybase\GrupoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\OrganogramaBethaDba.cs" />
     <Compile Include="Models\ModelSybase\ResponsavelBethaDba.cs" />
