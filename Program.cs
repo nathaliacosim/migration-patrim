@@ -33,8 +33,8 @@ public class Program
         //await config.Executar();
 
         /* Executando o processo de Download */
-        //Download download = new Download(odbcConnection, pgConnection);
-        //await download.Executar();
+        Download download = new Download(odbcConnection, pgConnection);
+        await download.Executar();
 
         /* Executando o processo de Envio dos Dados para Patrimonio Cloud CM Nova Andradina */
         //EnvioDados enviar = new EnvioDados(pgConnection, tokenConversao);

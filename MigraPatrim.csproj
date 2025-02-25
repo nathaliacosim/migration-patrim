@@ -118,6 +118,7 @@
     <Compile Include="Controller\EnviarConfiguracaoOrganograma.cs" />
     <Compile Include="Controller\EnviarEspecieBem.cs" />
     <Compile Include="Controller\EnviarExercicios.cs" />
+    <Compile Include="Controller\EnviarFornecedores.cs" />
     <Compile Include="Controller\EnviarGrupoBem.cs" />
     <Compile Include="Controller\EnviarMetodoDepreciacao.cs" />
     <Compile Include="Controller\EnviarOrganogramas.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Controller\EnviarTipoComprovante.cs" />
     <Compile Include="Controller\EnviarTipoUtilizacao.cs" />
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
+    <Compile Include="DownloadSybase\Enderecos.cs" />
     <Compile Include="DownloadSybase\EspecieBem.cs" />
     <Compile Include="DownloadSybase\Exercicios.cs" />
     <Compile Include="DownloadSybase\Fornecedor.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="Models\ModelCloud\TipoUtilizacaoPOST.cs" />
     <Compile Include="Models\ModelPostgres\EspecieBem.cs" />
     <Compile Include="Models\ModelPostgres\Exercicios.cs" />
+    <Compile Include="Models\ModelPostgres\Fornecedor.cs" />
     <Compile Include="Models\ModelPostgres\GrupoBem.cs" />
     <Compile Include="Models\ModelPostgres\MetodoDepreciacao.cs" />
     <Compile Include="Models\ModelPostgres\Organogramas.cs" />
@@ -151,6 +154,7 @@
     <Compile Include="Models\ModelPostgres\TipoComprovante.cs" />
     <Compile Include="Models\ModelPostgres\TipoUtilizacao.cs" />
     <Compile Include="Models\ModelSybase\DetalhamentoBethaDba.cs" />
+    <Compile Include="Models\ModelSybase\EnderecoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\FornecedorBethaDba.cs" />
     <Compile Include="Models\ModelSybase\GrupoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\OrganogramaBethaDba.cs" />

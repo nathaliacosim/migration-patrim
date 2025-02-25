@@ -32,7 +32,10 @@ public class Download
         //Responsavel resp = new Responsavel(_odbcConnection, _pgConnection);
         //await resp.InsertIntoResponsaveis();
 
-        Fornecedor fornec = new Fornecedor(_odbcConnection, _pgConnection);
-        await fornec.InsertIntoFornecedor();
+        //Fornecedor fornec = new Fornecedor(_odbcConnection, _pgConnection);
+        //await fornec.InsertIntoFornecedor();
+
+        Enderecos ends = new Enderecos(_odbcConnection, _pgConnection);
+        await ends.InsertIntoEndereco();
     }
 }
