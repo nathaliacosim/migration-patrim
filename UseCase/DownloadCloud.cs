@@ -17,7 +17,10 @@ public class DownloadCloud
 
     public async Task Executar()
     {
-        var paises = new Paises(_pgConnection, _token);
-        await paises.BuscarPaises();
+        //var paises = new Paises(_pgConnection, _token);
+        //await paises.BuscarPaises();
+
+        //var estados = new Estados(_pgConnection, _token);
+        //await estados.BuscarEstados();
     }
 }
