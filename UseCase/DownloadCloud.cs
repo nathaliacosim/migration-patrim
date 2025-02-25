@@ -23,7 +23,10 @@ public class DownloadCloud
         //var estados = new Estados(_pgConnection, _token);
         //await estados.BuscarEstados();
 
-        var municipios = new Municipios(_pgConnection, _token);
-        await municipios.BuscarMunicipios();
+        //var municipios = new Municipios(_pgConnection, _token);
+        //await municipios.BuscarMunicipios();
+
+        var tipoLogradouros = new TipoLogradouros(_pgConnection, _token);
+        await tipoLogradouros.BuscarTipoLogradouros();
     }
 }
