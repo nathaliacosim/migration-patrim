@@ -1,7 +1,7 @@
 ﻿using System;
-using Npgsql;
 using System.Data;
 using System.Threading.Tasks;
+using Npgsql;
 
 namespace MigraPatrim.Connections;
 
@@ -24,22 +24,90 @@ public class PgConnect
         {
             Console.WriteLine($"[PG] Erro ao criar a conexão: {ex.Message}");
             throw;
-        }        
+        }
     }
 
     public void Connect()
     {
-        using (var connection = new NpgsqlConnection(_connectionString))
+        using var connection = new NpgsqlConnection(_connectionString);
+        try
         {
-            try
-            {
-                connection.Open();
-                Console.WriteLine("[PG] Conexão estabelecida com sucesso!\n");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[PG] Erro ao conectar ao banco de dados: {ex.Message}");
-            }
+            connection.Open();
+            Console.WriteLine("[PG] Conexão estabelecida com sucesso!\n");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[PG] Erro ao conectar ao banco de dados: {ex.Message}");
+        }
+    }
+
+    public async Task<T> ExecuteScalarAsync<T>(string query, object parameters = null)
+    {
+        await using var connection = new NpgsqlConnection(_connectionString);
+        await connection.OpenAsync();
+
+        using var command = new NpgsqlCommand(query, connection);
+        AddParameters(command, parameters);
+
+        try
+        {
+            var result = await command.ExecuteScalarAsync();
+            return result == DBNull.Value ? default : (T)Convert.ChangeType(result, typeof(T));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[PG] Erro ao executar consulta escalar assíncrona: {ex.Message}");
+            return default;
+        }
+    }
+
+    public async Task<int> ExecuteInsertAsync(string query, object parameters)
+    {
+        await using var connection = new NpgsqlConnection(_connectionString);
+        await connection.OpenAsync();
+
+        using var command = new NpgsqlCommand(query, connection);
+        AddParameters(command, parameters);
+
+        try
+        {
+            var result = await command.ExecuteScalarAsync();
+            return result == DBNull.Value ? -1 : Convert.ToInt32(result);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[PG] Erro ao executar inserção assíncrona: {ex.Message}");
+            return -1;
+        }
+    }
+
+    public async Task ExecuteAsync(string query, object parameters = null)
+    {
+        await using var connection = new NpgsqlConnection(_connectionString);
+        await connection.OpenAsync();
+
+        using var command = new NpgsqlCommand(query, connection);
+        AddParameters(command, parameters);
+
+        try
+        {
+            await command.ExecuteNonQueryAsync();
+            Console.WriteLine("[PG] Comando executado com sucesso!\n");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[PG] Erro ao executar comando assíncrono: {ex.Message}");
+        }
+    }
+
+    private void AddParameters(NpgsqlCommand command, object parameters)
+    {
+        if (parameters == null) return;
+
+        foreach (var prop in parameters.GetType().GetProperties())
+        {
+            var value = prop.GetValue(parameters) ?? DBNull.Value;
+            command.Parameters.AddWithValue($"@{prop.Name}", value);
         }
     }
 
@@ -131,34 +199,6 @@ public class PgConnect
                     }
 
                     command.ExecuteNonQuery();
-                    Console.WriteLine("[PG] Comando executado com sucesso!\n");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[PG] Erro ao executar o comando no banco de dados: {ex.Message}");
-            }
-        }
-    }
-
-    public async Task ExecuteAsync(string query, object parameters = null)
-    {
-        using (var connection = new NpgsqlConnection(_connectionString))
-        {
-            try
-            {
-                await connection.OpenAsync();
-                using (var command = new NpgsqlCommand(query, connection))
-                {
-                    if (parameters != null)
-                    {
-                        foreach (var prop in parameters.GetType().GetProperties())
-                        {
-                            command.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(parameters) ?? DBNull.Value);
-                        }
-                    }
-
-                    await command.ExecuteNonQueryAsync();
                     Console.WriteLine("[PG] Comando executado com sucesso!\n");
                 }
             }

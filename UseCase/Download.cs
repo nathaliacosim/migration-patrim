@@ -35,7 +35,7 @@ public class Download
         //Fornecedor fornec = new Fornecedor(_odbcConnection, _pgConnection);
         //await fornec.InsertIntoFornecedor();
 
-        Enderecos ends = new Enderecos(_odbcConnection, _pgConnection);
-        await ends.InsertIntoEndereco();
+        //Enderecos ends = new Enderecos(_odbcConnection, _pgConnection);
+        //await ends.InsertIntoEndereco();
     }
 }

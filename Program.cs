@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 using MigraPatrim.Connections;
 using MigraPatrim.UseCase;
@@ -9,37 +11,52 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        var tokenConversao = "5dcd336d-a577-4062-af6c-8d524ebedde3";
+        // 🔹 Carregar configurações do appsettings.json
+        var config = LoadConfiguration();
+        string tokenConversao = config["TokenConversao"];
+
         Console.WriteLine($"Token de conversão: {tokenConversao}");
 
-        /* Configurando conexão ao Sybase */
-        string dsn = "PATRIM_CMNA";
-        Console.WriteLine($"Iniciando conexão ODBC ao dns: {dsn}");
-        var odbcConnection = new OdbcConnect(dsn);
-        odbcConnection.Connect();
+        // 🔹 Configurar conexões
+        var odbcConnection = ConfigureOdbc(config);
+        var pgConnection = ConfigurePostgres(config);
 
-        /* Configurando conexão ao Postgres */
-        string host = "localhost";
-        int port = 5432;
-        string database = "CM_NA_PATRIM";
-        string username = "postgres";
-        string password = "root";
-        Console.WriteLine($"Iniciando conexão Postgres ao DB: {database}");
-        var pgConnection = new PgConnect(host, port, database, username, password);
-        pgConnection.Connect();
-
-        /* Executando o processo de Configuração */
-        //Configuracoes config = new Configuracoes(pgConnection);
-        //await config.Executar();
-
-        /* Executando o processo de Download */
-        Download download = new Download(odbcConnection, pgConnection);
-        await download.Executar();
-
-        /* Executando o processo de Envio dos Dados para Patrimonio Cloud CM Nova Andradina */
-        //EnvioDados enviar = new EnvioDados(pgConnection, tokenConversao);
-        //await enviar.Executar();
+        // 🔹 Executar processo de Download Cloud
+        await new DownloadCloud(pgConnection, tokenConversao).Executar();
 
         Console.WriteLine("Processo finalizado.");
+    }
+
+    private static IConfiguration LoadConfiguration()
+    {
+        return new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .Build();
+    }
+
+    private static OdbcConnect ConfigureOdbc(IConfiguration config)
+    {
+        string dsn = config["ODBC:DSN"];
+        Console.WriteLine($"Iniciando conexão ODBC ao DNS: {dsn}");
+
+        var connection = new OdbcConnect(dsn);
+        connection.Connect();
+        return connection;
+    }
+
+    private static PgConnect ConfigurePostgres(IConfiguration config)
+    {
+        string host = config["Postgres:Host"];
+        int port = int.Parse(config["Postgres:Port"]);
+        string database = config["Postgres:Database"];
+        string username = config["Postgres:Username"];
+        string password = config["Postgres:Password"];
+
+        Console.WriteLine($"Iniciando conexão Postgres ao DB: {database}");
+
+        var connection = new PgConnect(host, port, database, username, password);
+        connection.Connect();
+        return connection;
     }
 }
