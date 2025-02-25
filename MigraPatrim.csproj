@@ -154,6 +154,7 @@
     <Compile Include="Controller\EnviarTipoComprovante.cs" />
     <Compile Include="Controller\EnviarTipoUtilizacao.cs" />
     <Compile Include="DownloadGLB\Estados.cs" />
+    <Compile Include="DownloadGLB\Municipios.cs" />
     <Compile Include="DownloadGLB\Paises.cs" />
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
     <Compile Include="DownloadSybase\Enderecos.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="DownloadSybase\TipoUtilizacao.cs" />
     <Compile Include="Models\ModelCloud\EstadosGET.cs" />
     <Compile Include="Models\ModelCloud\ExercicioPOST.cs" />
+    <Compile Include="Models\ModelCloud\MunicipiosGET.cs" />
     <Compile Include="Models\ModelCloud\PaisesGET.cs" />
     <Compile Include="Models\ModelCloud\ResponsavelPOST.cs" />
     <Compile Include="Models\ModelCloud\TipoBemPOST.cs" />
