@@ -47,7 +47,10 @@ public class EnvioDados
         //EnviarLogradouroFornecedores logradouros = new EnviarLogradouroFornecedores(_pgConnection, _token);
         //await logradouros.EnviarLogradouros();
 
-        EnviarFornecedores fornecedores = new EnviarFornecedores(_pgConnection, _token);
-        await fornecedores.EnviarFornecedoresCloud();
+        //EnviarFornecedores fornecedores = new EnviarFornecedores(_pgConnection, _token);
+        //await fornecedores.EnviarFornecedoresCloud();
+
+        EnviarTipoAquisicao tipoAquisicao = new EnviarTipoAquisicao(_pgConnection, _token);
+        await tipoAquisicao.EnviarAquisicaoCloud();
     }
 }

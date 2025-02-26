@@ -22,6 +22,7 @@ public class Program
         var pgConnection = ConfigurePostgres(config);
 
         // 🔹 Executar processos
+        //await new Configuracoes(pgConnection).Executar();
         //await new DownloadCloud(pgConnection, tokenConversao).Executar();
         await new EnvioDados(pgConnection, tokenConversao).Executar();
 
