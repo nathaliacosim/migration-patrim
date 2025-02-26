@@ -21,8 +21,9 @@ public class Program
         var odbcConnection = ConfigureOdbc(config);
         var pgConnection = ConfigurePostgres(config);
 
-        // 🔹 Executar processo de Download Cloud
+        // 🔹 Executar processos
         await new DownloadCloud(pgConnection, tokenConversao).Executar();
+        //await new EnvioDados(pgConnection, tokenConversao).Executar();
 
         Console.WriteLine("Processo finalizado.");
     }

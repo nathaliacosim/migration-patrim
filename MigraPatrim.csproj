@@ -142,6 +142,7 @@
   <ItemGroup>
     <Compile Include="Connections\OdbcConnect.cs" />
     <Compile Include="Connections\PgConnect.cs" />
+    <Compile Include="Controller\EnviarBairroFornecedores.cs" />
     <Compile Include="Controller\EnviarConfiguracaoOrganograma.cs" />
     <Compile Include="Controller\EnviarEspecieBem.cs" />
     <Compile Include="Controller\EnviarExercicios.cs" />
@@ -153,7 +154,9 @@
     <Compile Include="Controller\EnviarTipoBem.cs" />
     <Compile Include="Controller\EnviarTipoComprovante.cs" />
     <Compile Include="Controller\EnviarTipoUtilizacao.cs" />
+    <Compile Include="DownloadGLB\Bairros.cs" />
     <Compile Include="DownloadGLB\Estados.cs" />
+    <Compile Include="DownloadGLB\Logradouros.cs" />
     <Compile Include="DownloadGLB\Municipios.cs" />
     <Compile Include="DownloadGLB\Paises.cs" />
     <Compile Include="DownloadGLB\TipoLogradouros.cs" />
@@ -169,8 +172,11 @@
     <Compile Include="DownloadSybase\TipoBem.cs" />
     <Compile Include="DownloadSybase\TipoComprovante.cs" />
     <Compile Include="DownloadSybase\TipoUtilizacao.cs" />
+    <Compile Include="Models\ModelCloud\BairroGET.cs" />
+    <Compile Include="Models\ModelCloud\BairroPOST.cs" />
     <Compile Include="Models\ModelCloud\EstadosGET.cs" />
     <Compile Include="Models\ModelCloud\ExercicioPOST.cs" />
+    <Compile Include="Models\ModelCloud\LogradourosGET.cs" />
     <Compile Include="Models\ModelCloud\MunicipiosGET.cs" />
     <Compile Include="Models\ModelCloud\PaisesGET.cs" />
     <Compile Include="Models\ModelCloud\ResponsavelPOST.cs" />
@@ -178,6 +184,7 @@
     <Compile Include="Models\ModelCloud\TipoComprovantePOST.cs" />
     <Compile Include="Models\ModelCloud\TipoLogradourosGET.cs" />
     <Compile Include="Models\ModelCloud\TipoUtilizacaoPOST.cs" />
+    <Compile Include="Models\ModelPostgres\Bairros.cs" />
     <Compile Include="Models\ModelPostgres\EspecieBem.cs" />
     <Compile Include="Models\ModelPostgres\Exercicios.cs" />
     <Compile Include="Models\ModelPostgres\Fornecedor.cs" />

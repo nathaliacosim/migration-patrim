@@ -38,7 +38,10 @@ public class EnvioDados
         //EnviarEspecieBem especie = new EnviarEspecieBem(_pgConnection, _token);
         //await especie.EnviarEspecieBemCloud();
 
-        EnviarResponsaveis respons = new EnviarResponsaveis(_pgConnection, _token);
-        await respons.EnviarResponsaveisCloud();
+        //EnviarResponsaveis respons = new EnviarResponsaveis(_pgConnection, _token);
+        //await respons.EnviarResponsaveisCloud();
+
+        EnviarBairroFornecedores bairros = new EnviarBairroFornecedores(_pgConnection, _token);
+        await bairros.EnviarBairros();
     }
 }

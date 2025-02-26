@@ -26,7 +26,13 @@ public class DownloadCloud
         //var municipios = new Municipios(_pgConnection, _token);
         //await municipios.BuscarMunicipios();
 
-        var tipoLogradouros = new TipoLogradouros(_pgConnection, _token);
-        await tipoLogradouros.BuscarTipoLogradouros();
+        //var tipoLogradouros = new TipoLogradouros(_pgConnection, _token);
+        //await tipoLogradouros.BuscarTipoLogradouros();
+
+        //var logradouros = new Logradouros(_pgConnection, _token);
+        //await logradouros.BuscarLogradouros();
+
+        var bairros = new Bairros(_pgConnection, _token);
+        await bairros.BuscarBairros();
     }
 }
