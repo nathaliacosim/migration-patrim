@@ -41,7 +41,10 @@ public class EnvioDados
         //EnviarResponsaveis respons = new EnviarResponsaveis(_pgConnection, _token);
         //await respons.EnviarResponsaveisCloud();
 
-        EnviarBairroFornecedores bairros = new EnviarBairroFornecedores(_pgConnection, _token);
-        await bairros.EnviarBairros();
+        //EnviarBairroFornecedores bairros = new EnviarBairroFornecedores(_pgConnection, _token);
+        //await bairros.EnviarBairros();
+
+        EnviarLogradouroFornecedores logradouros = new EnviarLogradouroFornecedores(_pgConnection, _token);
+        await logradouros.EnviarLogradouros();
     }
 }

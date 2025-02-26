@@ -148,6 +148,7 @@
     <Compile Include="Controller\EnviarExercicios.cs" />
     <Compile Include="Controller\EnviarFornecedores.cs" />
     <Compile Include="Controller\EnviarGrupoBem.cs" />
+    <Compile Include="Controller\EnviarLogradouroFornecedores.cs" />
     <Compile Include="Controller\EnviarMetodoDepreciacao.cs" />
     <Compile Include="Controller\EnviarOrganogramas.cs" />
     <Compile Include="Controller\EnviarResponsaveis.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Models\ModelCloud\BairroPOST.cs" />
     <Compile Include="Models\ModelCloud\EstadosGET.cs" />
     <Compile Include="Models\ModelCloud\ExercicioPOST.cs" />
+    <Compile Include="Models\ModelCloud\LogradouroPOST.cs" />
     <Compile Include="Models\ModelCloud\LogradourosGET.cs" />
     <Compile Include="Models\ModelCloud\MunicipiosGET.cs" />
     <Compile Include="Models\ModelCloud\PaisesGET.cs" />
@@ -189,6 +191,7 @@
     <Compile Include="Models\ModelPostgres\Exercicios.cs" />
     <Compile Include="Models\ModelPostgres\Fornecedor.cs" />
     <Compile Include="Models\ModelPostgres\GrupoBem.cs" />
+    <Compile Include="Models\ModelPostgres\Logradouro.cs" />
     <Compile Include="Models\ModelPostgres\MetodoDepreciacao.cs" />
     <Compile Include="Models\ModelPostgres\Organogramas.cs" />
     <Compile Include="Models\ModelPostgres\Responsavel.cs" />
