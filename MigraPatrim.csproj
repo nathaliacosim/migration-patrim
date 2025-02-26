@@ -235,6 +235,7 @@
     <Compile Include="UseCase\Download.cs" />
     <Compile Include="UseCase\DownloadCloud.cs" />
     <Compile Include="UseCase\EnvioDados.cs" />
+    <Compile Include="Utils\StringHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

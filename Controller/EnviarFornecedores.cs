@@ -1,12 +1,12 @@
 ﻿using Dapper;
 using MigraPatrim.Connections;
 using MigraPatrim.Models.ModelCloud;
+using MigraPatrim.Models.ModelPostgres;
 using MigraPatrim.Request;
+using MigraPatrim.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MigraPatrim.Controller;
@@ -22,18 +22,33 @@ public class EnviarFornecedores
         _postRequest = new PostRequest(token, "api/fornecedores");
     }
 
-    public async Task<List<Models.ModelPostgres.Fornecedor>> BuscarFornecedores()
+    public async Task<List<Fornecedor>> BuscarFornecedores()
     {
-        const string query = "SELECT * FROM public.fornecedores_cloud";
+        const string query = "SELECT * FROM public.fornecedores_cloud WHERE id_cloud = ''";
         try
         {
             using var connection = _pgConnection.GetConnection();
-            return (await connection.QueryAsync<Models.ModelPostgres.Fornecedor>(query)).AsList();
+            return (await connection.QueryAsync<Fornecedor>(query)).AsList();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Erro ao buscar fornecedores_cloud: {ex.Message}");
-            return new List<Models.ModelPostgres.Fornecedor>();
+            return new List<Fornecedor>();
+        }
+    }
+
+    public Logradouro getLogFornecedor(int i_fornec)
+    {
+        const string query = "SELECT * FROM public.enderecos_cloud WHERE i_fornec = @i_fornec";
+        try
+        {
+            using var connection = _pgConnection.GetConnection();
+            return connection.QueryFirstOrDefault<Logradouro>(query, new { i_fornec });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao buscar enderecos_cloud: {ex.Message}");
+            return null;
         }
     }
 
@@ -44,10 +59,13 @@ public class EnviarFornecedores
 
         foreach (var item in pessoas)
         {
+            var dadosEndereco = getLogFornecedor(item.i_fornec);
+
             var json = JsonConvert.SerializeObject(new FornecedorPOST
             {
-                nome = item.nome,
+                nome = item.nome.Trim().ToUpper(),
                 cpfCnpj = item.cpf_cnpj,
+                dataInclusao = "2025-01-01",
                 tipo = new TipoFornecedorPOST
                 {
                     valor = item.tipo == "J" ? "JURIDICA" : "FISICA",
@@ -57,9 +75,45 @@ public class EnviarFornecedores
                 {
                     valor = "ATIVO",
                     descricao = "Ativo"
-                }
+                },
+                endereco = item.end_logradouro != null ? new EnderecoFornecedorPOST
+                {
+                    descricao = "Endereço Principal",
+                    numero = dadosEndereco.numero,
+                    cep = dadosEndereco.cep,
+                    municipio = new MunicipioFornecedorPOST
+                    {
+                        id = dadosEndereco.id_cidade
+                    },
+                    bairro = new BairroFornecedorPOST
+                    {
+                        id = dadosEndereco.id_bairro
+                    },
+                    logradouro = new LogradouroFornecedorPOST
+                    {
+                        id = int.Parse(dadosEndereco.id_cloud)
+                    }
+                } : null,
+                telefones = item.telefone != null ? new List<TelefoneFornecedorPOST> 
+                {
+                    new TelefoneFornecedorPOST
+                    {
+                        numero = StringHelper.LimparTelefone(item.telefone),
+                        tipo = "CELULAR",
+                        observacao = "Telefone principal",
+                        ordem = 0
+                    }
+                } : null,
+                emails = item.email != null ? new List<EmailFornecedorPOST>
+                {
+                    new EmailFornecedorPOST
+                    {
+                        endereco = StringHelper.LimparEmail(item.email),
+                        descricao = "Email principal",
+                        ordem = 0
+                    }
+                } : null
             });
-
 
             Console.WriteLine($"Enviando dados: {json}\n");
 
@@ -83,7 +137,7 @@ public class EnviarFornecedores
             }
         }
 
-        Console.WriteLine("FINALIZADO: responsaveis_cloud.\n\n");
+        Console.WriteLine("FINALIZADO: fornecedores_cloud.\n\n");
         return lotesIds;
     }
 
