@@ -163,6 +163,7 @@
     <Compile Include="DownloadGLB\Municipios.cs" />
     <Compile Include="DownloadGLB\Paises.cs" />
     <Compile Include="DownloadGLB\TipoLogradouros.cs" />
+    <Compile Include="DownloadSybase\CadastroBem.cs" />
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
     <Compile Include="DownloadSybase\Enderecos.cs" />
     <Compile Include="DownloadSybase\EspecieBem.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Models\ModelCloud\TipoLogradourosGET.cs" />
     <Compile Include="Models\ModelCloud\TipoUtilizacaoPOST.cs" />
     <Compile Include="Models\ModelPostgres\Bairros.cs" />
+    <Compile Include="Models\ModelPostgres\Bem.cs" />
     <Compile Include="Models\ModelPostgres\EspecieBem.cs" />
     <Compile Include="Models\ModelPostgres\EstadoConservacao.cs" />
     <Compile Include="Models\ModelPostgres\Exercicios.cs" />
@@ -206,6 +208,7 @@
     <Compile Include="Models\ModelPostgres\TipoBem.cs" />
     <Compile Include="Models\ModelPostgres\TipoComprovante.cs" />
     <Compile Include="Models\ModelPostgres\TipoUtilizacao.cs" />
+    <Compile Include="Models\ModelSybase\BemBethaDba.cs" />
     <Compile Include="Models\ModelSybase\DetalhamentoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\EnderecoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\FornecedorBethaDba.cs" />
