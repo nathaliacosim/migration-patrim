@@ -53,7 +53,10 @@ public class EnvioDados
         //EnviarTipoAquisicao tipoAquisicao = new EnviarTipoAquisicao(_pgConnection, _token);
         //await tipoAquisicao.EnviarAquisicaoCloud();
 
-        EnviarEstadoConservacao estadoConservacao = new EnviarEstadoConservacao(_pgConnection, _token);
-        await estadoConservacao.EnviarEstadoConservacaoCloud();
+        //EnviarEstadoConservacao estadoConservacao = new EnviarEstadoConservacao(_pgConnection, _token);
+        //await estadoConservacao.EnviarEstadoConservacaoCloud();
+
+        EnviarBens enviarBens = new EnviarBens(_pgConnection, _token);
+        await enviarBens.EnviarBensCloud();
     }
 }

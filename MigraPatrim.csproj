@@ -143,6 +143,7 @@
     <Compile Include="Connections\OdbcConnect.cs" />
     <Compile Include="Connections\PgConnect.cs" />
     <Compile Include="Controller\EnviarBairroFornecedores.cs" />
+    <Compile Include="Controller\EnviarBens.cs" />
     <Compile Include="Controller\EnviarConfiguracaoOrganograma.cs" />
     <Compile Include="Controller\EnviarEspecieBem.cs" />
     <Compile Include="Controller\EnviarEstadoConservacao.cs" />
