@@ -44,7 +44,10 @@ public class Download
         //Contas contas = new Contas(_odbcConnection, _pgConnection);
         //await contas.InsertIntoContas();
 
-        CentroCusto centroCusto = new CentroCusto(_odbcConnection, _pgConnection);
-        await centroCusto.InsertIntoCentroCusto();
+        //CentroCusto centroCusto = new CentroCusto(_odbcConnection, _pgConnection);
+        //await centroCusto.InsertIntoCentroCusto();
+
+        DepreciacaoCabecalho depreciacaoCabecalho = new DepreciacaoCabecalho(_odbcConnection, _pgConnection);
+        await depreciacaoCabecalho.InsertIntoCabecalhoDepre();
     }
 }

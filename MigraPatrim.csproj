@@ -144,6 +144,7 @@
     <Compile Include="Connections\PgConnect.cs" />
     <Compile Include="Controller\EnviarBairroFornecedores.cs" />
     <Compile Include="Controller\EnviarBens.cs" />
+    <Compile Include="Controller\EnviarCabecalhoDepreciacao.cs" />
     <Compile Include="Controller\EnviarConfiguracaoOrganograma.cs" />
     <Compile Include="Controller\EnviarEspecieBem.cs" />
     <Compile Include="Controller\EnviarEstadoConservacao.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="DownloadSybase\CentroCusto.cs" />
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
     <Compile Include="DownloadSybase\Contas.cs" />
+    <Compile Include="DownloadSybase\DepreciacaoCabecalho.cs" />
     <Compile Include="DownloadSybase\Enderecos.cs" />
     <Compile Include="DownloadSybase\EspecieBem.cs" />
     <Compile Include="DownloadSybase\EstadoConservacao.cs" />
@@ -183,6 +185,7 @@
     <Compile Include="DownloadSybase\TipoUtilizacao.cs" />
     <Compile Include="Models\ModelCloud\BairroGET.cs" />
     <Compile Include="Models\ModelCloud\BairroPOST.cs" />
+    <Compile Include="Models\ModelCloud\DepreciacoesPOST.cs" />
     <Compile Include="Models\ModelCloud\EstadoConservacaoPOST.cs" />
     <Compile Include="Models\ModelCloud\EstadosGET.cs" />
     <Compile Include="Models\ModelCloud\ExercicioPOST.cs" />
@@ -198,6 +201,7 @@
     <Compile Include="Models\ModelCloud\TipoUtilizacaoPOST.cs" />
     <Compile Include="Models\ModelPostgres\Bairros.cs" />
     <Compile Include="Models\ModelPostgres\Bem.cs" />
+    <Compile Include="Models\ModelPostgres\DepreciacaoCabecalho.cs" />
     <Compile Include="Models\ModelPostgres\EspecieBem.cs" />
     <Compile Include="Models\ModelPostgres\EstadoConservacao.cs" />
     <Compile Include="Models\ModelPostgres\Exercicios.cs" />
@@ -214,6 +218,7 @@
     <Compile Include="Models\ModelSybase\BemBethaDba.cs" />
     <Compile Include="Models\ModelSybase\CustoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\ContasBethaDba.cs" />
+    <Compile Include="Models\ModelSybase\DepreciacaoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\DetalhamentoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\EnderecoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\FornecedorBethaDba.cs" />
