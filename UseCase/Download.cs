@@ -38,7 +38,13 @@ public class Download
         //Enderecos ends = new Enderecos(_odbcConnection, _pgConnection);
         //await ends.InsertIntoEndereco();
 
-        CadastroBem cadastroBem = new CadastroBem(_odbcConnection, _pgConnection);
-        await cadastroBem.InsertIntoBens();
+        //CadastroBem cadastroBem = new CadastroBem(_odbcConnection, _pgConnection);
+        //await cadastroBem.InsertIntoBens();
+
+        //Contas contas = new Contas(_odbcConnection, _pgConnection);
+        //await contas.InsertIntoContas();
+
+        CentroCusto centroCusto = new CentroCusto(_odbcConnection, _pgConnection);
+        await centroCusto.InsertIntoCentroCusto();
     }
 }
