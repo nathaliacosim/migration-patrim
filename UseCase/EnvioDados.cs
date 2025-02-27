@@ -50,7 +50,10 @@ public class EnvioDados
         //EnviarFornecedores fornecedores = new EnviarFornecedores(_pgConnection, _token);
         //await fornecedores.EnviarFornecedoresCloud();
 
-        EnviarTipoAquisicao tipoAquisicao = new EnviarTipoAquisicao(_pgConnection, _token);
-        await tipoAquisicao.EnviarAquisicaoCloud();
+        //EnviarTipoAquisicao tipoAquisicao = new EnviarTipoAquisicao(_pgConnection, _token);
+        //await tipoAquisicao.EnviarAquisicaoCloud();
+
+        EnviarEstadoConservacao estadoConservacao = new EnviarEstadoConservacao(_pgConnection, _token);
+        await estadoConservacao.EnviarEstadoConservacaoCloud();
     }
 }

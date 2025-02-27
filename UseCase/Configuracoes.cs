@@ -23,11 +23,14 @@ public class Configuracoes
 
         //TipoComprovante tipoComprovante = new TipoComprovante(_pgConnection);
         //await tipoComprovante.InserirRegistrosPadrao();
-        
+
         //TipoUtilizacao tipoUtilizacao = new TipoUtilizacao(_pgConnection);
         //await tipoUtilizacao.InserirRegistrosPadrao();
 
-        TipoAquisicao tipoAquisicao = new TipoAquisicao(_pgConnection);
-        await tipoAquisicao.InserirTipoAquisicao();
+        //TipoAquisicao tipoAquisicao = new TipoAquisicao(_pgConnection);
+        //await tipoAquisicao.InserirTipoAquisicao();
+
+        EstadoConservacao estadoConservacao = new EstadoConservacao(_pgConnection);
+        await estadoConservacao.InsertIntoEstadoConservacao();
     }
 }

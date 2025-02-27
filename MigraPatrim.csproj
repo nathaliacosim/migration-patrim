@@ -145,6 +145,7 @@
     <Compile Include="Controller\EnviarBairroFornecedores.cs" />
     <Compile Include="Controller\EnviarConfiguracaoOrganograma.cs" />
     <Compile Include="Controller\EnviarEspecieBem.cs" />
+    <Compile Include="Controller\EnviarEstadoConservacao.cs" />
     <Compile Include="Controller\EnviarExercicios.cs" />
     <Compile Include="Controller\EnviarFornecedores.cs" />
     <Compile Include="Controller\EnviarGrupoBem.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
     <Compile Include="DownloadSybase\Enderecos.cs" />
     <Compile Include="DownloadSybase\EspecieBem.cs" />
+    <Compile Include="DownloadSybase\EstadoConservacao.cs" />
     <Compile Include="DownloadSybase\Exercicios.cs" />
     <Compile Include="DownloadSybase\Fornecedor.cs" />
     <Compile Include="DownloadSybase\GrupoBem.cs" />
@@ -177,6 +179,7 @@
     <Compile Include="DownloadSybase\TipoUtilizacao.cs" />
     <Compile Include="Models\ModelCloud\BairroGET.cs" />
     <Compile Include="Models\ModelCloud\BairroPOST.cs" />
+    <Compile Include="Models\ModelCloud\EstadoConservacaoPOST.cs" />
     <Compile Include="Models\ModelCloud\EstadosGET.cs" />
     <Compile Include="Models\ModelCloud\ExercicioPOST.cs" />
     <Compile Include="Models\ModelCloud\LogradouroPOST.cs" />
@@ -191,6 +194,7 @@
     <Compile Include="Models\ModelCloud\TipoUtilizacaoPOST.cs" />
     <Compile Include="Models\ModelPostgres\Bairros.cs" />
     <Compile Include="Models\ModelPostgres\EspecieBem.cs" />
+    <Compile Include="Models\ModelPostgres\EstadoConservacao.cs" />
     <Compile Include="Models\ModelPostgres\Exercicios.cs" />
     <Compile Include="Models\ModelPostgres\Fornecedor.cs" />
     <Compile Include="Models\ModelPostgres\GrupoBem.cs" />
@@ -246,11 +250,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="especies.sql" />
-    <Content Include="organograma.sql" />
-    <Content Include="sql_tables.sql" />
+    <Content Include="SQL\especies.sql" />
+    <Content Include="SQL\organograma.sql" />
+    <Content Include="SQL\sql_enderecos.sql" />
+    <Content Include="SQL\sql_tables.sql" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
