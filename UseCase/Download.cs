@@ -23,11 +23,17 @@ public class Download
         //Organogramas organogramas = new Organogramas(_odbcConnection, _pgConnection);
         //await organogramas.InsertIntoOrganogramas();
 
+        //DetalhamentoBem detalhamentoBem = new DetalhamentoBem(_odbcConnection, _pgConnection);
+        //await detalhamentoBem.InsertIntoDetalhamentos();
+
+        //TipoNatureza tipoNatureza = new TipoNatureza(_odbcConnection, _pgConnection);
+        //await tipoNatureza.InsertIntoTiposNatureza();
+
         //GrupoBem grupoBem = new GrupoBem(_odbcConnection, _pgConnection);
         //await grupoBem.InserirGrupos();
 
-        //EspecieBem especieBem = new EspecieBem(_odbcConnection, _pgConnection);
-        //await especieBem.InsertIntoEspecies();
+        EspecieBem especieBem = new EspecieBem(_odbcConnection, _pgConnection);
+        await especieBem.InsertIntoEspecies();
 
         //Responsavel resp = new Responsavel(_odbcConnection, _pgConnection);
         //await resp.InsertIntoResponsaveis();
@@ -38,6 +44,9 @@ public class Download
         //Enderecos ends = new Enderecos(_odbcConnection, _pgConnection);
         //await ends.InsertIntoEndereco();
 
+        //Localizacao localizacao = new Localizacao(_odbcConnection, _pgConnection);
+        //await localizacao.InsertIntoLocalizacaoBem();
+
         //CadastroBem cadastroBem = new CadastroBem(_odbcConnection, _pgConnection);
         //await cadastroBem.InsertIntoBens();
 
@@ -47,7 +56,7 @@ public class Download
         //CentroCusto centroCusto = new CentroCusto(_odbcConnection, _pgConnection);
         //await centroCusto.InsertIntoCentroCusto();
 
-        DepreciacaoCabecalho depreciacaoCabecalho = new DepreciacaoCabecalho(_odbcConnection, _pgConnection);
-        await depreciacaoCabecalho.InsertIntoCabecalhoDepre();
+        //DepreciacaoCabecalho depreciacaoCabecalho = new DepreciacaoCabecalho(_odbcConnection, _pgConnection);
+        //await depreciacaoCabecalho.InsertIntoCabecalhoDepre();
     }
 }

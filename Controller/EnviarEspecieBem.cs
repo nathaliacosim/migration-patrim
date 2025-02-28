@@ -22,7 +22,7 @@ public class EnviarEspecieBem
 
     public async Task<List<Models.ModelPostgres.EspecieBem>> BuscarEspecieBem()
     {
-        const string query = "SELECT * FROM public.especie_bem_cloud";
+        const string query = "SELECT * FROM public.especie_bem_cloud WHERE id_cloud = ''";
         try
         {
             using var connection = _pgConnection.GetConnection();

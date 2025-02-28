@@ -14,7 +14,6 @@ public class EspecieBem
 
     public EspecieBem(OdbcConnect odbcConnect, PgConnect pgConnect)
     {
-        _odbcConnection = odbcConnect;
         _pgConnection = pgConnect;
     }
 
@@ -22,7 +21,7 @@ public class EspecieBem
     {
         try
         {
-            using var connection = _odbcConnection.GetConnection();
+            using var connection = _pgConnection.GetConnection();
             return (await connection.QueryAsync<T>(query)).AsList();
         }
         catch (Exception ex)
@@ -34,18 +33,18 @@ public class EspecieBem
 
     public Task<List<DetalhamentoBethaDba>> BuscarDetalhamentos() =>
         BuscarDados<DetalhamentoBethaDba>(
-            "SELECT DISTINCT b.i_conta as i_conta, db.descricao as descricao, db.i_detalhamentos_bens as i_chave, 'D' as tipo_chave " +
-            "FROM bethadba.detalhamentos_bens db, bethadba.bens b " +
-            "WHERE db.i_entidades = b.i_entidades AND db.i_detalhamentos_bens = b.i_detalhamentos_bens " +
-            "ORDER BY descricao;"
+            @"SELECT DISTINCT b.i_conta as i_conta, d.descricao as descricao, d.i_detalhamentos_bens as i_chave, 'D' as tipo_chave 
+              FROM detalhamentos_bens_cloud d, bens_cloud b 
+              WHERE d.i_entidades = b.i_entidades AND d.i_detalhamentos_bens = b.i_detalhamentos_bens 
+              ORDER BY descricao;"
         );
 
     public Task<List<TipoNaturezaBethaDba>> BuscarTipoNaturezas() =>
         BuscarDados<TipoNaturezaBethaDba>(
-            "SELECT DISTINCT b.i_conta as i_conta, tn.i_tipo_natur as i_chave, tn.nome as descricao, 'N' as tipo_chave " +
-            "FROM bethadba.bens b, bethadba.tipo_natur tn " +
-            "WHERE b.i_entidades = tn.i_entidades AND b.i_tipo_natur = tn.i_tipo_natur " +
-            "ORDER BY descricao;"
+            @"SELECT DISTINCT b.i_conta as i_conta, tn.i_tipo_natur as i_chave, tn.nome as descricao, 'N' as tipo_chave
+              FROM bens_cloud b, tipos_natureza_bens_cloud tn 
+              WHERE b.i_entidades = tn.i_entidades AND b.i_tipo_natur = tn.i_tipo_natur
+              ORDER BY descricao;"
         );
 
     public async Task<List<int>> BuscarGrupoBens(int i_conta)

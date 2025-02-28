@@ -24,7 +24,7 @@ public class EnviarBens
 
     public async Task<List<Models.ModelPostgres.Bem>> BuscarBens()
     {
-        const string query = "SELECT * FROM public.bens_cloud";
+        const string query = "SELECT * FROM public.bens_cloud WHERE id_cloud = '';";
         try
         {
             using var connection = _pgConnection.GetConnection();

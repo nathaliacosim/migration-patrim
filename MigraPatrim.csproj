@@ -142,6 +142,7 @@
   <ItemGroup>
     <Compile Include="Connections\OdbcConnect.cs" />
     <Compile Include="Connections\PgConnect.cs" />
+    <Compile Include="Controller\AguardarTombamento.cs" />
     <Compile Include="Controller\EnviarBairroFornecedores.cs" />
     <Compile Include="Controller\EnviarBens.cs" />
     <Compile Include="Controller\EnviarCabecalhoDepreciacao.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Controller\EnviarTipoBem.cs" />
     <Compile Include="Controller\EnviarTipoComprovante.cs" />
     <Compile Include="Controller\EnviarTipoUtilizacao.cs" />
+    <Compile Include="Controller\TombarBens.cs" />
     <Compile Include="DownloadGLB\Bairros.cs" />
     <Compile Include="DownloadGLB\Estados.cs" />
     <Compile Include="DownloadGLB\Logradouros.cs" />
@@ -170,18 +172,21 @@
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
     <Compile Include="DownloadSybase\Contas.cs" />
     <Compile Include="DownloadSybase\DepreciacaoCabecalho.cs" />
+    <Compile Include="DownloadSybase\DetalhamentoBem.cs" />
     <Compile Include="DownloadSybase\Enderecos.cs" />
     <Compile Include="DownloadSybase\EspecieBem.cs" />
     <Compile Include="DownloadSybase\EstadoConservacao.cs" />
     <Compile Include="DownloadSybase\Exercicios.cs" />
     <Compile Include="DownloadSybase\Fornecedor.cs" />
     <Compile Include="DownloadSybase\GrupoBem.cs" />
+    <Compile Include="DownloadSybase\Localizacao.cs" />
     <Compile Include="DownloadSybase\MetodoDepreciacao.cs" />
     <Compile Include="DownloadSybase\Organogramas.cs" />
     <Compile Include="DownloadSybase\Responsavel.cs" />
     <Compile Include="DownloadSybase\TipoAquisicao.cs" />
     <Compile Include="DownloadSybase\TipoBem.cs" />
     <Compile Include="DownloadSybase\TipoComprovante.cs" />
+    <Compile Include="DownloadSybase\TipoNatureza.cs" />
     <Compile Include="DownloadSybase\TipoUtilizacao.cs" />
     <Compile Include="Models\ModelCloud\BairroGET.cs" />
     <Compile Include="Models\ModelCloud\BairroPOST.cs" />
@@ -199,6 +204,7 @@
     <Compile Include="Models\ModelCloud\TipoComprovantePOST.cs" />
     <Compile Include="Models\ModelCloud\TipoLogradourosGET.cs" />
     <Compile Include="Models\ModelCloud\TipoUtilizacaoPOST.cs" />
+    <Compile Include="Models\ModelCloud\TombarBemPOST.cs" />
     <Compile Include="Models\ModelPostgres\Bairros.cs" />
     <Compile Include="Models\ModelPostgres\Bem.cs" />
     <Compile Include="Models\ModelPostgres\DepreciacaoCabecalho.cs" />
@@ -223,6 +229,7 @@
     <Compile Include="Models\ModelSybase\EnderecoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\FornecedorBethaDba.cs" />
     <Compile Include="Models\ModelSybase\GrupoBethaDba.cs" />
+    <Compile Include="Models\ModelSybase\LocalizacaoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\OrganogramaBethaDba.cs" />
     <Compile Include="Models\ModelSybase\ResponsavelBethaDba.cs" />
     <Compile Include="Models\ModelSybase\TipoNaturezaBethaDba.cs" />
