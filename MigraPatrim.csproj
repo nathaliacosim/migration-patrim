@@ -188,6 +188,7 @@
     <Compile Include="DownloadSybase\TipoComprovante.cs" />
     <Compile Include="DownloadSybase\TipoNatureza.cs" />
     <Compile Include="DownloadSybase\TipoUtilizacao.cs" />
+    <Compile Include="DownloadSybase\TransferenciaCabecalho.cs" />
     <Compile Include="Models\ModelCloud\BairroGET.cs" />
     <Compile Include="Models\ModelCloud\BairroPOST.cs" />
     <Compile Include="Models\ModelCloud\DepreciacoesPOST.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Models\ModelSybase\OrganogramaBethaDba.cs" />
     <Compile Include="Models\ModelSybase\ResponsavelBethaDba.cs" />
     <Compile Include="Models\ModelSybase\TipoNaturezaBethaDba.cs" />
+    <Compile Include="Models\ModelSybase\TransferenciaCabecalhoBethaDba.cs" />
     <Compile Include="Request\PostRequest.cs" />
     <Compile Include="Models\ModelCloud\BensGET.cs" />
     <Compile Include="Models\ModelCloud\BensPOST.cs" />

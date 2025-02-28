@@ -32,8 +32,8 @@ public class Download
         //GrupoBem grupoBem = new GrupoBem(_odbcConnection, _pgConnection);
         //await grupoBem.InserirGrupos();
 
-        EspecieBem especieBem = new EspecieBem(_odbcConnection, _pgConnection);
-        await especieBem.InsertIntoEspecies();
+        //EspecieBem especieBem = new EspecieBem(_odbcConnection, _pgConnection);
+        //await especieBem.InsertIntoEspecies();
 
         //Responsavel resp = new Responsavel(_odbcConnection, _pgConnection);
         //await resp.InsertIntoResponsaveis();
@@ -58,5 +58,8 @@ public class Download
 
         //DepreciacaoCabecalho depreciacaoCabecalho = new DepreciacaoCabecalho(_odbcConnection, _pgConnection);
         //await depreciacaoCabecalho.InsertIntoCabecalhoDepre();
+
+        TransferenciaCabecalho transfCabecalho = new TransferenciaCabecalho(_odbcConnection, _pgConnection);
+        await transfCabecalho.InsertIntoCabecalhoTransf();
     }
 }
