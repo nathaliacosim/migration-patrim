@@ -167,6 +167,7 @@
     <Compile Include="DownloadGLB\Municipios.cs" />
     <Compile Include="DownloadGLB\Paises.cs" />
     <Compile Include="DownloadGLB\TipoLogradouros.cs" />
+    <Compile Include="DownloadGLB\TipoTransferencia.cs" />
     <Compile Include="DownloadSybase\CadastroBem.cs" />
     <Compile Include="DownloadSybase\CentroCusto.cs" />
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="Models\ModelCloud\TipoBemPOST.cs" />
     <Compile Include="Models\ModelCloud\TipoComprovantePOST.cs" />
     <Compile Include="Models\ModelCloud\TipoLogradourosGET.cs" />
+    <Compile Include="Models\ModelCloud\TipoTransferenciaGET.cs" />
     <Compile Include="Models\ModelCloud\TipoUtilizacaoPOST.cs" />
     <Compile Include="Models\ModelCloud\TombarBemPOST.cs" />
     <Compile Include="Models\ModelPostgres\Bairros.cs" />

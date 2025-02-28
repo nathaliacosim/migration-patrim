@@ -32,7 +32,10 @@ public class DownloadCloud
         //var logradouros = new Logradouros(_pgConnection, _token);
         //await logradouros.BuscarLogradouros();
 
-        var bairros = new Bairros(_pgConnection, _token);
-        await bairros.BuscarBairros();
+        //var bairros = new Bairros(_pgConnection, _token);
+        //await bairros.BuscarBairros();
+
+        TipoTransferencia tipoTransf = new TipoTransferencia(_pgConnection, _token);
+        await tipoTransf.BuscarTipoTransferencia();
     }
 }
