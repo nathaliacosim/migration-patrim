@@ -35,7 +35,7 @@ public class DownloadCloud
         //var bairros = new Bairros(_pgConnection, _token);
         //await bairros.BuscarBairros();
 
-        TipoTransferencia tipoTransf = new TipoTransferencia(_pgConnection, _token);
-        await tipoTransf.BuscarTipoTransferencia();
+        //TipoTransferencia tipoTransf = new TipoTransferencia(_pgConnection, _token);
+        //await tipoTransf.BuscarTipoTransferencia();
     }
 }

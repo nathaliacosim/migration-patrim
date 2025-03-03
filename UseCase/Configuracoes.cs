@@ -30,7 +30,7 @@ public class Configuracoes
         //TipoAquisicao tipoAquisicao = new TipoAquisicao(_pgConnection);
         //await tipoAquisicao.InserirTipoAquisicao();
 
-        EstadoConservacao estadoConservacao = new EstadoConservacao(_pgConnection);
-        await estadoConservacao.InsertIntoEstadoConservacao();
+        //EstadoConservacao estadoConservacao = new EstadoConservacao(_pgConnection);
+        //await estadoConservacao.InsertIntoEstadoConservacao();
     }
 }
