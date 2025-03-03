@@ -63,7 +63,10 @@ public class Download
         //TransferenciaCabecalho transfCabecalho = new TransferenciaCabecalho(_odbcConnection, _pgConnection);
         //await transfCabecalho.InsertIntoCabecalhoTransf();
 
-        TipoBaixa tipoBaixa = new TipoBaixa(_odbcConnection, _pgConnection);
-        await tipoBaixa.InsertIntoTipoBaixa();
+        //TipoBaixa tipoBaixa = new TipoBaixa(_odbcConnection, _pgConnection);
+        //await tipoBaixa.InsertIntoTipoBaixa();
+        
+        //BaixaCabecalho baixaCabecalho = new BaixaCabecalho(_odbcConnection, _pgConnection);
+        //await baixaCabecalho.InsertIntoCabecalhoBaixa();
     }
 }
