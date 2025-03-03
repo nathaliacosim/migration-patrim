@@ -176,6 +176,7 @@
     <Compile Include="DownloadSybase\CentroCusto.cs" />
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
     <Compile Include="DownloadSybase\Contas.cs" />
+    <Compile Include="DownloadSybase\DepreciacaoBens.cs" />
     <Compile Include="DownloadSybase\DepreciacaoCabecalho.cs" />
     <Compile Include="DownloadSybase\DetalhamentoBem.cs" />
     <Compile Include="DownloadSybase\Enderecos.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Models\ModelSybase\BemBethaDba.cs" />
     <Compile Include="Models\ModelSybase\CustoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\ContasBethaDba.cs" />
+    <Compile Include="Models\ModelSybase\DepreciacaoBensBethaDba.cs" />
     <Compile Include="Models\ModelSybase\DepreciacaoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\DetalhamentoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\EnderecoBethaDba.cs" />

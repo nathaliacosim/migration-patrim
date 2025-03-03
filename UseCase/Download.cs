@@ -65,8 +65,11 @@ public class Download
 
         //TipoBaixa tipoBaixa = new TipoBaixa(_odbcConnection, _pgConnection);
         //await tipoBaixa.InsertIntoTipoBaixa();
-        
+
         //BaixaCabecalho baixaCabecalho = new BaixaCabecalho(_odbcConnection, _pgConnection);
         //await baixaCabecalho.InsertIntoCabecalhoBaixa();
+
+        DepreciacaoBens depreciacaoBens = new DepreciacaoBens(_odbcConnection, _pgConnection);
+        await depreciacaoBens.InsertIntoBensDepreciacao();
     }
 }
