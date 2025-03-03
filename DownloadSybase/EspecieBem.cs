@@ -1,8 +1,11 @@
 ﻿using Dapper;
 using MigraPatrim.Connections;
+using MigraPatrim.Models.ModelPostgres;
 using MigraPatrim.Models.ModelSybase;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace MigraPatrim.DownloadSybase;
@@ -46,6 +49,20 @@ public class EspecieBem
               WHERE b.i_entidades = tn.i_entidades AND b.i_tipo_natur = tn.i_tipo_natur
               ORDER BY descricao;"
         );
+
+    public async Task<List<MigraPatrim.Models.ModelPostgres.GrupoBem>> BuscarTodosGrupoBens()
+    {
+        try
+        {
+            using var connection = _pgConnection.GetConnection();
+            return (await connection.QueryAsync<MigraPatrim.Models.ModelPostgres.GrupoBem>("SELECT * FROM grupo_bem_cloud;")).AsList();    
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao buscar grupo_bem_cloud: {ex.Message}");
+            return new List<MigraPatrim.Models.ModelPostgres.GrupoBem>();
+        }
+    }
 
     public async Task<List<int>> BuscarGrupoBens(int i_conta)
     {
@@ -129,5 +146,40 @@ public class EspecieBem
                 await InserirDados(tipoNaturezas, grupo);
             }
         }
+    }
+
+    public async Task InsertIntoOutrasEspecies()
+    {
+        const string checkExistsQuery = "SELECT COUNT(1) FROM especie_bem_cloud WHERE descricao = @descricao AND id_grupo_bem = @id_grupo_bem;";
+        const string insertQuery = "INSERT INTO especie_bem_cloud (id_cloud, id_grupo_bem, i_conta, i_chave, tipo_chave, descricao) " +
+                                   "VALUES (@id_cloud, @id_grupo_bem, @i_conta, @i_chave, @tipo_chave, @descricao);";
+
+        using var connection = _pgConnection.GetConnection();
+
+        var grupoBens = await BuscarTodosGrupoBens();
+        foreach (var grupo in grupoBens)
+        {
+            var parametros = new
+            {
+                id_cloud = "",
+                id_grupo_bem = int.Parse(grupo.id_cloud),
+                i_conta = grupo.i_conta,
+                i_chave = 0,
+                tipo_chave = "O",
+                descricao = "Outras Especies"
+            };
+
+            int count = await connection.ExecuteScalarAsync<int>(checkExistsQuery, parametros);
+
+            if (count == 0)
+            {
+                await connection.ExecuteAsync(insertQuery, parametros);
+                Console.WriteLine("Registro inserido com sucesso.");
+            }
+            else
+            {
+                Console.WriteLine("Registro já existente.");
+            }
+        }       
     }
 }

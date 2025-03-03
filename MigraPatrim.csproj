@@ -146,6 +146,7 @@
     <Compile Include="Controller\EnviarBairroFornecedores.cs" />
     <Compile Include="Controller\EnviarBens.cs" />
     <Compile Include="Controller\EnviarCabecalhoDepreciacao.cs" />
+    <Compile Include="Controller\EnviarCabecalhoTransferencia.cs" />
     <Compile Include="Controller\EnviarConfiguracaoOrganograma.cs" />
     <Compile Include="Controller\EnviarEspecieBem.cs" />
     <Compile Include="Controller\EnviarEstadoConservacao.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Models\ModelCloud\TipoTransferenciaGET.cs" />
     <Compile Include="Models\ModelCloud\TipoUtilizacaoPOST.cs" />
     <Compile Include="Models\ModelCloud\TombarBemPOST.cs" />
+    <Compile Include="Models\ModelCloud\TransferenciaPOST.cs" />
     <Compile Include="Models\ModelPostgres\Bairros.cs" />
     <Compile Include="Models\ModelPostgres\Bem.cs" />
     <Compile Include="Models\ModelPostgres\DepreciacaoCabecalho.cs" />
@@ -224,6 +226,7 @@
     <Compile Include="Models\ModelPostgres\TipoBem.cs" />
     <Compile Include="Models\ModelPostgres\TipoComprovante.cs" />
     <Compile Include="Models\ModelPostgres\TipoUtilizacao.cs" />
+    <Compile Include="Models\ModelPostgres\TransferenciaCabecalho.cs" />
     <Compile Include="Models\ModelSybase\BemBethaDba.cs" />
     <Compile Include="Models\ModelSybase\CustoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\ContasBethaDba.cs" />

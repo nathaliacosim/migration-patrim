@@ -22,7 +22,7 @@ public class EnviarResponsaveis
 
     public async Task<List<Models.ModelPostgres.Responsavel>> BuscarResponsaveis()
     {
-        const string query = "SELECT * FROM public.responsaveis_cloud";
+        const string query = "SELECT * FROM public.responsaveis_cloud WHERE id_cloud = ''";
         try
         {
             using var connection = _pgConnection.GetConnection();
