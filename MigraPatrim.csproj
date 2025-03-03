@@ -158,6 +158,7 @@
     <Compile Include="Controller\EnviarOrganogramas.cs" />
     <Compile Include="Controller\EnviarResponsaveis.cs" />
     <Compile Include="Controller\EnviarTipoAquisicao.cs" />
+    <Compile Include="Controller\EnviarTipoBaixa.cs" />
     <Compile Include="Controller\EnviarTipoBem.cs" />
     <Compile Include="Controller\EnviarTipoComprovante.cs" />
     <Compile Include="Controller\EnviarTipoUtilizacao.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="DownloadGLB\Paises.cs" />
     <Compile Include="DownloadGLB\TipoLogradouros.cs" />
     <Compile Include="DownloadGLB\TipoTransferencia.cs" />
+    <Compile Include="DownloadSybase\BaixaCabecalho.cs" />
     <Compile Include="DownloadSybase\CadastroBem.cs" />
     <Compile Include="DownloadSybase\CentroCusto.cs" />
     <Compile Include="DownloadSybase\ConfiguracaoOrganograma.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="DownloadSybase\Organogramas.cs" />
     <Compile Include="DownloadSybase\Responsavel.cs" />
     <Compile Include="DownloadSybase\TipoAquisicao.cs" />
+    <Compile Include="DownloadSybase\TipoBaixa.cs" />
     <Compile Include="DownloadSybase\TipoBem.cs" />
     <Compile Include="DownloadSybase\TipoComprovante.cs" />
     <Compile Include="DownloadSybase\TipoNatureza.cs" />
@@ -203,6 +206,7 @@
     <Compile Include="Models\ModelCloud\PaisesGET.cs" />
     <Compile Include="Models\ModelCloud\ResponsavelPOST.cs" />
     <Compile Include="Models\ModelCloud\TipoAquisicaoPOST.cs" />
+    <Compile Include="Models\ModelCloud\TipoBaixaPOST.cs" />
     <Compile Include="Models\ModelCloud\TipoBemPOST.cs" />
     <Compile Include="Models\ModelCloud\TipoComprovantePOST.cs" />
     <Compile Include="Models\ModelCloud\TipoLogradourosGET.cs" />
@@ -223,6 +227,7 @@
     <Compile Include="Models\ModelPostgres\Organogramas.cs" />
     <Compile Include="Models\ModelPostgres\Responsavel.cs" />
     <Compile Include="Models\ModelPostgres\TipoAquisicao.cs" />
+    <Compile Include="Models\ModelPostgres\TipoBaixa.cs" />
     <Compile Include="Models\ModelPostgres\TipoBem.cs" />
     <Compile Include="Models\ModelPostgres\TipoComprovante.cs" />
     <Compile Include="Models\ModelPostgres\TipoUtilizacao.cs" />
@@ -236,6 +241,7 @@
     <Compile Include="Models\ModelSybase\FornecedorBethaDba.cs" />
     <Compile Include="Models\ModelSybase\GrupoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\LocalizacaoBethaDba.cs" />
+    <Compile Include="Models\ModelSybase\MotivoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\OrganogramaBethaDba.cs" />
     <Compile Include="Models\ModelSybase\ResponsavelBethaDba.cs" />
     <Compile Include="Models\ModelSybase\TipoNaturezaBethaDba.cs" />

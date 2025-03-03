@@ -68,7 +68,10 @@ public class EnvioDados
         //EnviarCabecalhoDepreciacao enviarCabecalhoDepreciacao = new EnviarCabecalhoDepreciacao(_pgConnection, _token);
         //await enviarCabecalhoDepreciacao.EnviarCabecalhoDepreciacoesCloud();
 
-        EnviarCabecalhoTransferencia enviarCabecalhoTransferencia = new EnviarCabecalhoTransferencia(_pgConnection, _token);
-        await enviarCabecalhoTransferencia.EnviarCabecalhoTransferenciaCloud();
+        //EnviarCabecalhoTransferencia enviarCabecalhoTransferencia = new EnviarCabecalhoTransferencia(_pgConnection, _token);
+        //await enviarCabecalhoTransferencia.EnviarCabecalhoTransferenciaCloud();
+
+        EnviarTipoBaixa tipoBaixa = new EnviarTipoBaixa(_pgConnection, _token);
+        await tipoBaixa.EnviarTipoBaixaCloud();
     }
 }
