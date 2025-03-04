@@ -36,8 +36,8 @@ public class Download
         //await especieBem.InsertIntoEspecies();
         //await especieBem.InsertIntoOutrasEspecies();
 
-        //Responsavel resp = new Responsavel(_odbcConnection, _pgConnection);
-        //await resp.InsertIntoResponsaveis();
+        Responsavel resp = new Responsavel(_odbcConnection, _pgConnection);
+        await resp.InsertIntoResponsaveis();
 
         //Fornecedor fornec = new Fornecedor(_odbcConnection, _pgConnection);
         //await fornec.InsertIntoFornecedor();
@@ -69,7 +69,13 @@ public class Download
         //BaixaCabecalho baixaCabecalho = new BaixaCabecalho(_odbcConnection, _pgConnection);
         //await baixaCabecalho.InsertIntoCabecalhoBaixa();
 
-        DepreciacaoBens depreciacaoBens = new DepreciacaoBens(_odbcConnection, _pgConnection);
-        await depreciacaoBens.InsertIntoBensDepreciacao();
+        //DepreciacaoBens depreciacaoBens = new DepreciacaoBens(_odbcConnection, _pgConnection);
+        //await depreciacaoBens.InsertIntoBensDepreciacao();
+
+        //TransferenciaBens transferenciaBens = new TransferenciaBens(_odbcConnection, _pgConnection);
+        //await transferenciaBens.InsertIntoTransferenciaBens();
+
+        //BaixaBens baixaBens = new BaixaBens(_odbcConnection, _pgConnection);
+        //await baixaBens.InsertIntoBaixaBens();
     }
 }

@@ -41,8 +41,8 @@ public class AguardarTombamento
 
         foreach (var item in tipos)
         {
-            //var url_base = "https://patrimonio.betha.cloud/patrimonio-services/api/bens/" + item.id_cloud + "/aguardarTombamento";
-            var url_base = "https://patrimonio.betha.cloud/patrimonio-services/api/bens/" + item.id_cloud + "/desfazerTombamento";
+            var url_base = "https://patrimonio.betha.cloud/patrimonio-services/api/bens/" + item.id_cloud + "/aguardarTombamento";
+            //var url_base = "https://patrimonio.betha.cloud/patrimonio-services/api/bens/" + item.id_cloud + "/desfazerTombamento";
             Send(url_base);
         }
 

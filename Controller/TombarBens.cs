@@ -42,11 +42,12 @@ public class TombarBens
 
         foreach (var item in tipos)
         {
+            Console.WriteLine($"nroPlaca: {item.numero_placa} | id_organograma: {item.id_organograma} | id_responsavel: {item.id_responsavel} | Data: {item?.dt_inicio_deprec}");
             var url_base = "https://patrimonio.betha.cloud/patrimonio-services/api/bens/" + item.id_cloud + "/tombar";
 
             var json_dados = new TombarBemPOST
             {
-                nroPlaca = item.numero_placa,
+                nroPlaca = item?.numero_placa,
                 organograma = new OrganogramaTombarBemPOST
                 {
                     id = (int)item.id_organograma
@@ -55,7 +56,7 @@ public class TombarBens
                 {
                     id = (int)item.id_responsavel
                 },
-                dhTombamento = DateTime.ParseExact(item.dt_inicio_deprec, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") + " 00:00:00"
+                dhTombamento = DateTime.ParseExact((item?.dt_inicio_deprec ?? item.data_aquis), "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") + " 00:00:00"
             };
 
             var json = JsonConvert.SerializeObject(json_dados);

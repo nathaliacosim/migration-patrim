@@ -12,7 +12,6 @@ namespace MigraPatrim.DownloadSybase;
 
 public class EspecieBem
 {
-    private readonly OdbcConnect _odbcConnection;
     private readonly PgConnect _pgConnection;
 
     public EspecieBem(OdbcConnect odbcConnect, PgConnect pgConnect)

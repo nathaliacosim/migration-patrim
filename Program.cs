@@ -24,8 +24,9 @@ public class Program
         // 🔹 Executar processos
         //await new Configuracoes(pgConnection).Executar();
         //await new DownloadCloud(pgConnection, tokenConversao).Executar();
-        await new Download(odbcConnection, pgConnection).Executar();
-        //await new EnvioDados(pgConnection, tokenConversao).Executar();
+        //await new Download(odbcConnection, pgConnection).Executar();
+        await new EnvioDados(pgConnection, tokenConversao).Executar();
+        //await new RemoveDados(pgConnection, tokenConversao).Executar();
 
         Console.WriteLine("Processo finalizado.");
     }

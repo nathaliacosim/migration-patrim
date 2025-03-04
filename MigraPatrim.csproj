@@ -144,6 +144,7 @@
     <Compile Include="Connections\PgConnect.cs" />
     <Compile Include="Controller\AguardarTombamento.cs" />
     <Compile Include="Controller\EnviarBairroFornecedores.cs" />
+    <Compile Include="Controller\EnviarBaixaBens.cs" />
     <Compile Include="Controller\EnviarBens.cs" />
     <Compile Include="Controller\EnviarCabecalhoBaixa.cs" />
     <Compile Include="Controller\EnviarCabecalhoDepreciacao.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Controller\EnviarTipoBem.cs" />
     <Compile Include="Controller\EnviarTipoComprovante.cs" />
     <Compile Include="Controller\EnviarTipoUtilizacao.cs" />
+    <Compile Include="Controller\ExcluirCabecalhosTransferencia.cs" />
     <Compile Include="Controller\TombarBens.cs" />
     <Compile Include="DownloadGLB\Bairros.cs" />
     <Compile Include="DownloadGLB\Estados.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="DownloadGLB\Paises.cs" />
     <Compile Include="DownloadGLB\TipoLogradouros.cs" />
     <Compile Include="DownloadGLB\TipoTransferencia.cs" />
+    <Compile Include="DownloadSybase\BaixaBens.cs" />
     <Compile Include="DownloadSybase\BaixaCabecalho.cs" />
     <Compile Include="DownloadSybase\CadastroBem.cs" />
     <Compile Include="DownloadSybase\CentroCusto.cs" />
@@ -195,6 +198,7 @@
     <Compile Include="DownloadSybase\TipoComprovante.cs" />
     <Compile Include="DownloadSybase\TipoNatureza.cs" />
     <Compile Include="DownloadSybase\TipoUtilizacao.cs" />
+    <Compile Include="DownloadSybase\TransferenciaBens.cs" />
     <Compile Include="DownloadSybase\TransferenciaCabecalho.cs" />
     <Compile Include="Models\ModelCloud\BairroGET.cs" />
     <Compile Include="Models\ModelCloud\BairroPOST.cs" />
@@ -236,6 +240,7 @@
     <Compile Include="Models\ModelPostgres\TipoComprovante.cs" />
     <Compile Include="Models\ModelPostgres\TipoUtilizacao.cs" />
     <Compile Include="Models\ModelPostgres\TransferenciaCabecalho.cs" />
+    <Compile Include="Models\ModelSybase\BaixaBensBethaDba.cs" />
     <Compile Include="Models\ModelSybase\BaixaCabecalhoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\BemBethaDba.cs" />
     <Compile Include="Models\ModelSybase\CustoBethaDba.cs" />
@@ -251,6 +256,7 @@
     <Compile Include="Models\ModelSybase\OrganogramaBethaDba.cs" />
     <Compile Include="Models\ModelSybase\ResponsavelBethaDba.cs" />
     <Compile Include="Models\ModelSybase\TipoNaturezaBethaDba.cs" />
+    <Compile Include="Models\ModelSybase\TransferenciaBensBethaDba.cs" />
     <Compile Include="Models\ModelSybase\TransferenciaCabecalhoBethaDba.cs" />
     <Compile Include="Request\PostRequest.cs" />
     <Compile Include="Models\ModelCloud\BensGET.cs" />
@@ -282,6 +288,7 @@
     <Compile Include="UseCase\Download.cs" />
     <Compile Include="UseCase\DownloadCloud.cs" />
     <Compile Include="UseCase\EnvioDados.cs" />
+    <Compile Include="UseCase\RemoveDados.cs" />
     <Compile Include="Utils\StringHelper.cs" />
   </ItemGroup>
   <ItemGroup>

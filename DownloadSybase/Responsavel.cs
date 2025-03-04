@@ -21,12 +21,7 @@ public class Responsavel
 
     public async Task<List<ResponsavelBethaDba>> BuscarResponsaveis()
     {
-        const string query = "SELECT DISTINCT r.i_respons, r.nome, r.cpf, r.funcao " +
-                             "FROM bethadba.bens b " +
-                             "JOIN bethadba.responsaveis r "+
-                             "ON b.i_respons = r.i_respons "+
-                             "WHERE b.i_respons is not null " +
-                             "ORDER BY r.i_respons";
+        const string query = "SELECT i_respons, nome, cpf, funcao FROM bethadba.responsaveis;";
         try
         {
             using var connection = _odbcConnection.GetConnection();
@@ -53,9 +48,9 @@ public class Responsavel
                 id_cloud = "",
                 i_responsavel = item.i_respons,
                 nome = item.nome.ToUpper(),
-                item.cpf,
+                cpf = item.cpf ?? "",
                 funcao = item.funcao == null ? "" : item.funcao.ToUpper(),
-                observacoes = new[] { 24, 26, 28, 60, 83 }.Contains(item.i_respons) ? "CPF gerado em 4DEVS" : ""
+                observacoes = item.cpf == "" ? "CPF gerado em 4DEVS" : ""
             };
 
             try

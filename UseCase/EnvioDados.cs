@@ -62,8 +62,8 @@ public class EnvioDados
         //AguardarTombamento aguardarTombamento = new AguardarTombamento(_pgConnection, _token);
         //await aguardarTombamento.AguardandoTombamento();
 
-        //TombarBens tombarBens = new TombarBens(_pgConnection, _token);
-        //await tombarBens.Tombar();
+        TombarBens tombarBens = new TombarBens(_pgConnection, _token);
+        await tombarBens.Tombar();
 
         //EnviarCabecalhoDepreciacao enviarCabecalhoDepreciacao = new EnviarCabecalhoDepreciacao(_pgConnection, _token);
         //await enviarCabecalhoDepreciacao.EnviarCabecalhoDepreciacoesCloud();
@@ -74,7 +74,7 @@ public class EnvioDados
         //EnviarTipoBaixa tipoBaixa = new EnviarTipoBaixa(_pgConnection, _token);
         //await tipoBaixa.EnviarTipoBaixaCloud();
 
-        EnviarCabecalhoBaixa enviarCabecalhoBaixa = new EnviarCabecalhoBaixa(_pgConnection, _token);
-        await enviarCabecalhoBaixa.EnviarCabecalhoBaixaCloud();
+        //EnviarCabecalhoBaixa enviarCabecalhoBaixa = new EnviarCabecalhoBaixa(_pgConnection, _token);
+        //await enviarCabecalhoBaixa.EnviarCabecalhoBaixaCloud();
     }
 }
