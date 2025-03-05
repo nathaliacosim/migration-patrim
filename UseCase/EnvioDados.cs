@@ -84,7 +84,7 @@ public class EnvioDados
         //FinalizarBaixa finalizarBaixa = new FinalizarBaixa(_pgConnection, _token);
         //await finalizarBaixa.FinalizarBaixasPendentes();
 
-        EnviarMovimentos enviarMovimentos = new EnviarMovimentos(_pgConnection, _token);
-        await enviarMovimentos.ProcessarPacotes();
+        //EnviarMovimentos enviarMovimentos = new EnviarMovimentos(_pgConnection, _token);
+        //await enviarMovimentos.ProcessarPacotes();
     }
 }

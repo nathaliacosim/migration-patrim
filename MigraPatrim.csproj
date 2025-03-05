@@ -187,6 +187,7 @@
     <Compile Include="DownloadSybase\Enderecos.cs" />
     <Compile Include="DownloadSybase\EspecieBem.cs" />
     <Compile Include="DownloadSybase\EstadoConservacao.cs" />
+    <Compile Include="DownloadSybase\BaixaEstornos.cs" />
     <Compile Include="DownloadSybase\Exercicios.cs" />
     <Compile Include="DownloadSybase\Fornecedor.cs" />
     <Compile Include="DownloadSybase\GrupoBem.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Models\ModelPostgres\TransferenciaCabecalho.cs" />
     <Compile Include="Models\ModelSybase\BaixaBensBethaDba.cs" />
     <Compile Include="Models\ModelSybase\BaixaCabecalhoBethaDba.cs" />
+    <Compile Include="Models\ModelSybase\BaixaEstornoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\BemBethaDba.cs" />
     <Compile Include="Models\ModelSybase\CustoBethaDba.cs" />
     <Compile Include="Models\ModelSybase\ContasBethaDba.cs" />

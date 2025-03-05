@@ -23,7 +23,7 @@ public class EnviarCabecalhoBaixa
 
     public async Task<List<BaixasCabecalho>> BuscarCabecalhoBaixa()
     {
-        const string query = "SELECT * FROM baixa_cabecalho_cloud ORDER BY ano, mes, i_motivo;";
+        const string query = "SELECT * FROM baixa_cabecalho_cloud WHERE id_cloud = '' ORDER BY ano, mes, i_motivo;";
         try
         {
             using var connection = _pgConnection.GetConnection();
@@ -53,7 +53,7 @@ public class EnviarCabecalhoBaixa
                     id = item.id_cloud_tipo_baixa
                 },
                 dhBaixa = item.dt_baixa + " 00:00:00",
-                motivo = item.observacao ?? "NÃO INFORMADO."
+                motivo = item.observacao == null || item.observacao.Trim() == "" ? "NÃO INFORMADO." : item.observacao
             });
 
             Console.WriteLine($"📤 Enviando dados do ID {item.id}...");

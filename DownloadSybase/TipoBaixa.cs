@@ -46,10 +46,10 @@ public class TipoBaixa
             var parametros = new
             {
                 id_cloud = "",
-                i_motivo = item.i_motivo,
-                descricao = item.descricao.Trim(),
-                classificacao = "",
-                i_entidades = item.i_entidades
+                item.i_motivo,
+                descricao = item.descricao?.Trim() ?? null,
+                classificacao = "OUTROS",
+                item.i_entidades
             };
 
             try

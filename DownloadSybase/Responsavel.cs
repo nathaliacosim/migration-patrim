@@ -39,7 +39,7 @@ public class Responsavel
         var dados = await BuscarResponsaveis();
         foreach (var item in dados)
         {
-            const string checkExistsQuery = @"SELECT COUNT(1) FROM responsaveis_cloud WHERE nome = @nome and cpf = @cpf";
+            const string checkExistsQuery = @"SELECT COUNT(1) FROM responsaveis_cloud WHERE i_responsavel = @i_responsavel";
             const string insertQuery = @"INSERT INTO responsaveis_cloud (id_cloud, i_responsavel, nome, cpf, funcao, observacoes) 
                                          VALUES (@id_cloud, @i_responsavel, @nome, @cpf, @funcao, @observacoes)";
 

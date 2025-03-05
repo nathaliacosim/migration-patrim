@@ -36,8 +36,8 @@ public class Download
         //await especieBem.InsertIntoEspecies();
         //await especieBem.InsertIntoOutrasEspecies();
 
-        Responsavel resp = new Responsavel(_odbcConnection, _pgConnection);
-        await resp.InsertIntoResponsaveis();
+        //Responsavel resp = new Responsavel(_odbcConnection, _pgConnection);
+        //await resp.InsertIntoResponsaveis();
 
         //Fornecedor fornec = new Fornecedor(_odbcConnection, _pgConnection);
         //await fornec.InsertIntoFornecedor();
@@ -77,5 +77,8 @@ public class Download
 
         //BaixaBens baixaBens = new BaixaBens(_odbcConnection, _pgConnection);
         //await baixaBens.InsertIntoBaixaBens();
+
+        //BaixaEstornos baixaEstornos = new BaixaEstornos(_odbcConnection, _pgConnection);
+        //await baixaEstornos.InsertIntoEstornoBaixaBens();
     }
 }
