@@ -40,9 +40,9 @@ public class BaixaBens
         {
             const string checkExistsQuery = @"SELECT COUNT(1) FROM baixas_cloud WHERE i_baixa = @i_baixa";
             const string insertQuery = @"INSERT INTO baixas_cloud 
-                                           (id_cloud, i_baixa, i_motivo, i_bem, id_cloud_baixa, data_baixa, nota_explicativa, i_entidades)
+                                           (id_cloud, i_baixa, i_motivo, i_bem, id_cloud_bem, id_cloud_baixa, data_baixa, nota_explicativa, i_entidades)
                                          VALUES 
-                                            (@id_cloud, @i_baixa, @i_motivo, @i_bem, @id_cloud_baixa, @data_baixa, @nota_explicativa, @i_entidades)";
+                                            (@id_cloud, @i_baixa, @i_motivo, @i_bem, @id_cloud_bem, @id_cloud_baixa, @data_baixa, @nota_explicativa, @i_entidades)";
 
             var parametros = new
             {
@@ -50,6 +50,7 @@ public class BaixaBens
                 i_baixa = item.i_baixa,
                 i_motivo = item.i_motivo,
                 i_bem = item.i_bem,
+                id_cloud_bem = (int?)null,
                 id_cloud_baixa = (int?)null,
                 data_baixa = item.data_baixa,
                 nota_explicativa = item.historico,

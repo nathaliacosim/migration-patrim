@@ -157,6 +157,7 @@
     <Compile Include="Controller\EnviarGrupoBem.cs" />
     <Compile Include="Controller\EnviarLogradouroFornecedores.cs" />
     <Compile Include="Controller\EnviarMetodoDepreciacao.cs" />
+    <Compile Include="Controller\EnviarMovimentos.cs" />
     <Compile Include="Controller\EnviarOrganogramas.cs" />
     <Compile Include="Controller\EnviarResponsaveis.cs" />
     <Compile Include="Controller\EnviarTipoAquisicao.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Controller\EnviarTipoComprovante.cs" />
     <Compile Include="Controller\EnviarTipoUtilizacao.cs" />
     <Compile Include="Controller\ExcluirCabecalhosTransferencia.cs" />
+    <Compile Include="Controller\FinalizarBaixa.cs" />
     <Compile Include="Controller\TombarBens.cs" />
     <Compile Include="DownloadGLB\Bairros.cs" />
     <Compile Include="DownloadGLB\Estados.cs" />
@@ -202,7 +204,9 @@
     <Compile Include="DownloadSybase\TransferenciaCabecalho.cs" />
     <Compile Include="Models\ModelCloud\BairroGET.cs" />
     <Compile Include="Models\ModelCloud\BairroPOST.cs" />
+    <Compile Include="Models\ModelCloud\BaixaBensPOST.cs" />
     <Compile Include="Models\ModelCloud\BaixaPOST.cs" />
+    <Compile Include="Models\ModelCloud\DepreciacaoBemPOST.cs" />
     <Compile Include="Models\ModelCloud\DepreciacoesPOST.cs" />
     <Compile Include="Models\ModelCloud\EstadoConservacaoPOST.cs" />
     <Compile Include="Models\ModelCloud\EstadosGET.cs" />
@@ -220,10 +224,13 @@
     <Compile Include="Models\ModelCloud\TipoTransferenciaGET.cs" />
     <Compile Include="Models\ModelCloud\TipoUtilizacaoPOST.cs" />
     <Compile Include="Models\ModelCloud\TombarBemPOST.cs" />
+    <Compile Include="Models\ModelCloud\TransferenciaBemPOST.cs" />
     <Compile Include="Models\ModelCloud\TransferenciaPOST.cs" />
     <Compile Include="Models\ModelPostgres\Bairros.cs" />
+    <Compile Include="Models\ModelPostgres\BaixaBem.cs" />
     <Compile Include="Models\ModelPostgres\BaixasCabecalho.cs" />
     <Compile Include="Models\ModelPostgres\Bem.cs" />
+    <Compile Include="Models\ModelPostgres\DepreciacaoBem.cs" />
     <Compile Include="Models\ModelPostgres\DepreciacaoCabecalho.cs" />
     <Compile Include="Models\ModelPostgres\EspecieBem.cs" />
     <Compile Include="Models\ModelPostgres\EstadoConservacao.cs" />
@@ -239,6 +246,7 @@
     <Compile Include="Models\ModelPostgres\TipoBem.cs" />
     <Compile Include="Models\ModelPostgres\TipoComprovante.cs" />
     <Compile Include="Models\ModelPostgres\TipoUtilizacao.cs" />
+    <Compile Include="Models\ModelPostgres\TransferenciaBem.cs" />
     <Compile Include="Models\ModelPostgres\TransferenciaCabecalho.cs" />
     <Compile Include="Models\ModelSybase\BaixaBensBethaDba.cs" />
     <Compile Include="Models\ModelSybase\BaixaCabecalhoBethaDba.cs" />

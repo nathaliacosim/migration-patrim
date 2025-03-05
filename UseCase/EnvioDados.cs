@@ -1,5 +1,6 @@
 ﻿using MigraPatrim.Connections;
 using MigraPatrim.Controller;
+using MigraPatrim.Models.ModelPostgres;
 using System.Threading.Tasks;
 
 namespace MigraPatrim.UseCase;
@@ -62,8 +63,8 @@ public class EnvioDados
         //AguardarTombamento aguardarTombamento = new AguardarTombamento(_pgConnection, _token);
         //await aguardarTombamento.AguardandoTombamento();
 
-        TombarBens tombarBens = new TombarBens(_pgConnection, _token);
-        await tombarBens.Tombar();
+        //TombarBens tombarBens = new TombarBens(_pgConnection, _token);
+        //await tombarBens.Tombar();
 
         //EnviarCabecalhoDepreciacao enviarCabecalhoDepreciacao = new EnviarCabecalhoDepreciacao(_pgConnection, _token);
         //await enviarCabecalhoDepreciacao.EnviarCabecalhoDepreciacoesCloud();
@@ -76,5 +77,14 @@ public class EnvioDados
 
         //EnviarCabecalhoBaixa enviarCabecalhoBaixa = new EnviarCabecalhoBaixa(_pgConnection, _token);
         //await enviarCabecalhoBaixa.EnviarCabecalhoBaixaCloud();
+
+        //EnviarBaixaBens enviarBaixaBens = new EnviarBaixaBens(_pgConnection, _token);
+        //await enviarBaixaBens.BaixarBem();
+
+        //FinalizarBaixa finalizarBaixa = new FinalizarBaixa(_pgConnection, _token);
+        //await finalizarBaixa.FinalizarBaixasPendentes();
+
+        EnviarMovimentos enviarMovimentos = new EnviarMovimentos(_pgConnection, _token);
+        await enviarMovimentos.ProcessarPacotes();
     }
 }

@@ -11,4 +11,6 @@ public class BaixasCabecalho
     public string mes_ano { get; set; }
     public string dt_baixa { get; set; }
     public string observacao { get; set; }
+    public string finalizado { get; set; }
+    public int id_cloud_finalizacao { get; set; }
 }

@@ -27,11 +27,14 @@ public class EnviarCabecalhoBaixa
         try
         {
             using var connection = _pgConnection.GetConnection();
-            return (await connection.QueryAsync<BaixasCabecalho>(query)).AsList();
+            Console.WriteLine("🔍 Buscando registros de baixa_cabecalho_cloud...");
+            var result = (await connection.QueryAsync<BaixasCabecalho>(query)).AsList();
+            Console.WriteLine($"✅ {result.Count} registros encontrados!");
+            return result;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao buscar baixa_cabecalho_cloud: {ex.Message}");
+            Console.WriteLine($"❌ Erro ao buscar baixa_cabecalho_cloud: {ex.Message}");
             return new List<BaixasCabecalho>();
         }
     }
@@ -45,37 +48,38 @@ public class EnviarCabecalhoBaixa
         {
             var json = JsonConvert.SerializeObject(new BaixaPOST
             {
-                tipoBaixa = new TipoBaixaBaixaPOST 
-                { 
-                    id = item.id_cloud_tipo_baixa 
+                tipoBaixa = new TipoBaixaBaixaPOST
+                {
+                    id = item.id_cloud_tipo_baixa
                 },
                 dhBaixa = item.dt_baixa + " 00:00:00",
                 motivo = item.observacao ?? "NÃO INFORMADO."
             });
 
-            Console.WriteLine($"Enviando dados: {json}\n");
+            Console.WriteLine($"📤 Enviando dados do ID {item.id}...");
+            Console.WriteLine($"📦 Payload: {json}\n");
 
             try
             {
                 var resposta = await _postRequest.Send(json).ConfigureAwait(false);
                 if (TryParseErrorResponse(resposta, out var errorMessage))
                 {
-                    Console.WriteLine($"Erro ao enviar baixa_cabecalho_cloud {item.id}: {errorMessage}\n");
+                    Console.WriteLine($"⚠️ Erro ao enviar baixa_cabecalho_cloud {item.id}: {errorMessage}\n");
                 }
                 else
                 {
                     lotesIds.Add(resposta);
-                    Console.WriteLine($"Atualizando ID Cloud: {item.id} -> {resposta}");
+                    Console.WriteLine($"✅ Envio bem-sucedido! ID Cloud gerado: {resposta}");
                     await AtualizarIdCloud(item.id, resposta);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao enviar baixa_cabecalho_cloud {item.id}: {ex.Message}\n");
+                Console.WriteLine($"❌ Erro ao enviar baixa_cabecalho_cloud {item.id}: {ex.Message}\n");
             }
         }
 
-        Console.WriteLine("FINALIZADO: transferencia_cabecalho_cloud.\n\n");
+        Console.WriteLine("🎉 FINALIZADO: Todos os registros de baixa foram processados!\n\n");
         return lotesIds;
     }
 
@@ -100,11 +104,11 @@ public class EnviarCabecalhoBaixa
         try
         {
             await _pgConnection.ExecuteAsync(query, new { id, idCloud });
-            Console.WriteLine($"ID Cloud atualizado para baixa_cabecalho_cloud {id}: {idCloud}");
+            Console.WriteLine($"🔄 ID Cloud atualizado com sucesso para o registro {id}: {idCloud}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao atualizar ID Cloud para baixa_cabecalho_cloud {id}: {ex.Message}");
+            Console.WriteLine($"❌ Erro ao atualizar ID Cloud para baixa_cabecalho_cloud {id}: {ex.Message}");
         }
     }
 }
