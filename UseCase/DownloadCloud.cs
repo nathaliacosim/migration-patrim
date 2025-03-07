@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MigraPatrim.Connections;
+using MigraPatrim.Controller;
 using MigraPatrim.DownloadGLB;
 
 namespace MigraPatrim.UseCase;
@@ -37,5 +38,9 @@ public class DownloadCloud
 
         //TipoTransferencia tipoTransf = new TipoTransferencia(_pgConnection, _token);
         //await tipoTransf.BuscarTipoTransferencia();
+
+        BuscarFornecedores buscarFornecedores = new BuscarFornecedores(_pgConnection, _token);
+        await buscarFornecedores.BuscarFornecs();
+
     }
 }
