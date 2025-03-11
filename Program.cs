@@ -15,8 +15,8 @@ public class Program
 
         var isConfig = false;
         var isDownload = false;
-        var isGetCloud = true;
-        var isEnvio = false;
+        var isGetCloud = false;
+        var isEnvio = true;
         var isRemocao = false;
 
         var config = LoadConfiguration();

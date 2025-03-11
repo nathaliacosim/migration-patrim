@@ -26,17 +26,21 @@ public class EnviarCabecalhoDepreciacao
         try
         {
             using var connection = _pgConnection.GetConnection();
-            return (await connection.QueryAsync<Models.ModelPostgres.DepreciacaoCabecalho>(query)).AsList();
+            Console.WriteLine("🔍 Buscando cabeçalhos de depreciação...");
+            var cabecalhos = (await connection.QueryAsync<Models.ModelPostgres.DepreciacaoCabecalho>(query)).AsList();
+            Console.WriteLine($"✅ {cabecalhos.Count} cabeçalhos encontrados!");
+            return cabecalhos;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao buscar depreciacao_cabecalho_cloud: {ex.Message}");
+            Console.WriteLine($"❌ Erro ao buscar depreciacao_cabecalho_cloud: {ex.Message}");
             return new List<Models.ModelPostgres.DepreciacaoCabecalho>();
         }
     }
 
     public async Task<List<string>> EnviarCabecalhoDepreciacoesCloud()
     {
+        Console.WriteLine("📤 Iniciando envio dos cabeçalhos de depreciação...");
         var resultado = await BuscarCabecalhoDepreciacoes();
         var lotesIds = new List<string>();
 
@@ -47,29 +51,29 @@ public class EnviarCabecalhoDepreciacao
                 mesAno = item.mes_ano
             });
 
-            Console.WriteLine($"Enviando dados: {json}\n");
+            Console.WriteLine($"📡 Enviando dados: {json}\n");
 
             try
             {
                 var resposta = await _postRequest.Send(json).ConfigureAwait(false);
                 if (TryParseErrorResponse(resposta, out var errorMessage))
                 {
-                    Console.WriteLine($"Erro ao enviar depreciacao_cabecalho_cloud {item.id}: {errorMessage}\n");
+                    Console.WriteLine($"⚠️ Erro ao enviar depreciacao_cabecalho_cloud {item.id}: {errorMessage}\n");
                 }
                 else
                 {
                     lotesIds.Add(resposta);
-                    Console.WriteLine($"Atualizando ID Cloud: {item.id} -> {resposta}");
+                    Console.WriteLine($"🔄 Atualizando ID Cloud: {item.id} -> {resposta}");
                     await AtualizarIdCloud(item.id, resposta);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao enviar depreciacao_cabecalho_cloud {item.id}: {ex.Message}\n");
+                Console.WriteLine($"❌ Erro ao enviar depreciacao_cabecalho_cloud {item.id}: {ex.Message}\n");
             }
         }
 
-        Console.WriteLine("FINALIZADO: depreciacao_cabecalho_cloud.\n\n");
+        Console.WriteLine("🎉 FINALIZADO: depreciacao_cabecalho_cloud enviado com sucesso! ✅\n\n");
         return lotesIds;
     }
 
@@ -94,11 +98,11 @@ public class EnviarCabecalhoDepreciacao
         try
         {
             await _pgConnection.ExecuteAsync(query, new { id, idCloud });
-            Console.WriteLine($"ID Cloud atualizado para depreciacao_cabecalho_cloud {id}: {idCloud}");
+            Console.WriteLine($"✅ ID Cloud atualizado para depreciacao_cabecalho_cloud {id}: {idCloud}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao atualizar ID Cloud para depreciacao_cabecalho_cloud {id}: {ex.Message}");
+            Console.WriteLine($"❌ Erro ao atualizar ID Cloud para depreciacao_cabecalho_cloud {id}: {ex.Message}");
         }
     }
 }

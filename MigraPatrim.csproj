@@ -144,6 +144,8 @@
     <Compile Include="Connections\PgConnect.cs" />
     <Compile Include="Controller\AguardarTombamento.cs" />
     <Compile Include="Controller\BuscarFornecedores.cs" />
+    <Compile Include="Controller\BuscarOrganogramas.cs" />
+    <Compile Include="Controller\BuscarResponsaveis.cs" />
     <Compile Include="Controller\EnviarBairroFornecedores.cs" />
     <Compile Include="Controller\EnviarBens.cs" />
     <Compile Include="Controller\EnviarCabecalhoBaixa.cs" />
@@ -159,6 +161,7 @@
     <Compile Include="Controller\EnviarMetodoDepreciacao.cs" />
     <Compile Include="Controller\EnviarMovimentos.cs" />
     <Compile Include="Controller\EnviarOrganogramas.cs" />
+    <Compile Include="Controller\EnviarOrganogramasDepara.cs" />
     <Compile Include="Controller\EnviarResponsaveis.cs" />
     <Compile Include="Controller\EnviarTipoAquisicao.cs" />
     <Compile Include="Controller\EnviarTipoBaixa.cs" />
@@ -217,6 +220,7 @@
     <Compile Include="Models\ModelCloud\LogradourosGET.cs" />
     <Compile Include="Models\ModelCloud\MunicipiosGET.cs" />
     <Compile Include="Models\ModelCloud\PaisesGET.cs" />
+    <Compile Include="Models\ModelCloud\ResponsavelGET.cs" />
     <Compile Include="Models\ModelCloud\ResponsavelPOST.cs" />
     <Compile Include="Models\ModelCloud\TipoAquisicaoPOST.cs" />
     <Compile Include="Models\ModelCloud\TipoBaixaPOST.cs" />
@@ -308,10 +312,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQL\baixas.sql" />
+    <Content Include="SQL\bens.sql" />
+    <Content Include="SQL\depreciacoes.sql" />
     <Content Include="SQL\especies.sql" />
+    <Content Include="SQL\obtem_periodos.sql" />
     <Content Include="SQL\organograma.sql" />
+    <Content Include="SQL\responsaveis_duplicados.sql" />
     <Content Include="SQL\sql_enderecos.sql" />
     <Content Include="SQL\sql_tables.sql" />
+    <Content Include="SQL\transferencias.sql" />
+    <Content Include="SQL\tratamento_db_oficial.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

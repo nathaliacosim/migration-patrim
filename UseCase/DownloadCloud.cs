@@ -39,8 +39,14 @@ public class DownloadCloud
         //TipoTransferencia tipoTransf = new TipoTransferencia(_pgConnection, _token);
         //await tipoTransf.BuscarTipoTransferencia();
 
-        BuscarFornecedores buscarFornecedores = new BuscarFornecedores(_pgConnection, _token);
-        await buscarFornecedores.BuscarFornecs();
+        //BuscarFornecedores buscarFornecedores = new BuscarFornecedores(_pgConnection, _token);
+        //await buscarFornecedores.BuscarFornecs();
+
+        //BuscarResponsaveis buscarResponsaveis = new BuscarResponsaveis(_pgConnection, _token);
+        //await buscarResponsaveis.BuscarRespons();
+
+        //BuscarOrganogramas buscarOrganogramas = new BuscarOrganogramas(_pgConnection, _token);
+        //await buscarOrganogramas.BuscarOrganog();
 
     }
 }

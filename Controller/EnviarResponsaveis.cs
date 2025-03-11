@@ -22,7 +22,10 @@ public class EnviarResponsaveis
 
     public async Task<List<Models.ModelPostgres.Responsavel>> BuscarResponsaveis()
     {
-        const string query = "SELECT * FROM public.responsaveis_cloud WHERE id_cloud = ''";
+        //const string query = "SELECT * FROM public.responsaveis_cloud WHERE id_cloud = ''";
+
+        /*Correção DB Oficial CM Nova Andradina*/
+        const string query = "SELECT f.* FROM responsaveis_cloud f LEFT JOIN responsaveis_dboficial_cloud x ON x.cpf = f.cpf WHERE x.id_cloud is null;";
         try
         {
             using var connection = _pgConnection.GetConnection();
