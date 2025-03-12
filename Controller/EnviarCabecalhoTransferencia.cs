@@ -31,7 +31,7 @@ public class EnviarCabecalhoTransferencia
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao buscar transferencia_cabecalho_cloud: {ex.Message}");
+            Console.WriteLine($"❌ Erro ao buscar transferencia_cabecalho_cloud: {ex.Message}");
             return new List<TransferenciaCabecalho>();
         }
     }
@@ -53,7 +53,7 @@ public class EnviarCabecalhoTransferencia
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao buscar especie_bem_cloud: {ex.Message}");
+            Console.WriteLine($"❌ Erro ao buscar especie_bem_cloud: {ex.Message}");
             return -1;
         }
     }
@@ -73,7 +73,7 @@ public class EnviarCabecalhoTransferencia
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao buscar grupo_bem_cloud: {ex.Message}");
+            Console.WriteLine($"❌ Erro ao buscar grupo_bem_cloud: {ex.Message}");
             return -1;
         }
     }
@@ -125,29 +125,29 @@ public class EnviarCabecalhoTransferencia
                 } : null
             });
 
-            Console.WriteLine($"Enviando dados: {json}\n");
+            Console.WriteLine($"📤 Enviando transferência ID {item.id}: {json}\n");
 
             try
             {
                 var resposta = await _postRequest.Send(json).ConfigureAwait(false);
                 if (TryParseErrorResponse(resposta, out var errorMessage))
                 {
-                    Console.WriteLine($"Erro ao enviar transferencia_cabecalho_cloud {item.id}: {errorMessage}\n");
+                    Console.WriteLine($"⚠️ Erro ao enviar transferencia_cabecalho_cloud {item.id}: {errorMessage}\n");
                 }
                 else
                 {
                     lotesIds.Add(resposta);
-                    Console.WriteLine($"Atualizando ID Cloud: {item.id} -> {resposta}");
+                    Console.WriteLine($"✅ Atualizando ID Cloud: {item.id} -> {resposta}");
                     await AtualizarIdCloud(item.id, resposta);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao enviar transferencia_cabecalho_cloud {item.id}: {ex.Message}\n");
+                Console.WriteLine($"❌ Erro ao enviar transferencia_cabecalho_cloud {item.id}: {ex.Message}\n");
             }
         }
 
-        Console.WriteLine("FINALIZADO: transferencia_cabecalho_cloud.\n\n");
+        Console.WriteLine("🎯 FINALIZADO: transferencia_cabecalho_cloud.\n\n");
         return lotesIds;
     }
 
@@ -172,11 +172,11 @@ public class EnviarCabecalhoTransferencia
         try
         {
             await _pgConnection.ExecuteAsync(query, new { id, idCloud });
-            Console.WriteLine($"ID Cloud atualizado para transferencia_cabecalho_cloud {id}: {idCloud}");
+            Console.WriteLine($"✅ ID Cloud atualizado para transferencia_cabecalho_cloud {id}: {idCloud}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao atualizar ID Cloud para transferencia_cabecalho_cloud {id}: {ex.Message}");
+            Console.WriteLine($"❌ Erro ao atualizar ID Cloud para transferencia_cabecalho_cloud {id}: {ex.Message}");
         }
     }
 }

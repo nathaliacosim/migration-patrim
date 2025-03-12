@@ -21,6 +21,11 @@ public class EnvioDados
         //EnviarOrganogramas organogramas = new EnviarOrganogramas(_pgConnection, _token);
         //await organogramas.EnviarOrganogramasCloud();
 
+        /* Tratamento de dados CM Nova Andradina */
+        /* Depara Organogramas*/
+        //EnviarOrganogramasDepara enviarOrganogramas = new EnviarOrganogramasDepara(_pgConnection, _token);
+        //await enviarOrganogramas.EnviarOrganogramasCloud();
+
         //EnviarMetodoDepreciacao metodosDepreciacao = new EnviarMetodoDepreciacao(_pgConnection, _token);
         //await metodosDepreciacao.EnviarMetodoDepreCloud();
 
@@ -66,8 +71,8 @@ public class EnvioDados
         //TombarBens tombarBens = new TombarBens(_pgConnection, _token);
         //await tombarBens.Tombar();
 
-        EnviarCabecalhoDepreciacao enviarCabecalhoDepreciacao = new EnviarCabecalhoDepreciacao(_pgConnection, _token);
-        await enviarCabecalhoDepreciacao.EnviarCabecalhoDepreciacoesCloud();
+        //EnviarCabecalhoDepreciacao enviarCabecalhoDepreciacao = new EnviarCabecalhoDepreciacao(_pgConnection, _token);
+        //await enviarCabecalhoDepreciacao.EnviarCabecalhoDepreciacoesCloud();
 
         //EnviarCabecalhoTransferencia enviarCabecalhoTransferencia = new EnviarCabecalhoTransferencia(_pgConnection, _token);
         //await enviarCabecalhoTransferencia.EnviarCabecalhoTransferenciaCloud();
@@ -78,18 +83,7 @@ public class EnvioDados
         //EnviarCabecalhoBaixa enviarCabecalhoBaixa = new EnviarCabecalhoBaixa(_pgConnection, _token);
         //await enviarCabecalhoBaixa.EnviarCabecalhoBaixaCloud();
 
-        //EnviarBaixaBens enviarBaixaBens = new EnviarBaixaBens(_pgConnection, _token);
-        //await enviarBaixaBens.BaixarBem();
-
-        //FinalizarBaixa finalizarBaixa = new FinalizarBaixa(_pgConnection, _token);
-        //await finalizarBaixa.FinalizarBaixasPendentes();
-
-        //EnviarMovimentos enviarMovimentos = new EnviarMovimentos(_pgConnection, _token);
-        //await enviarMovimentos.ProcessarPacotes();
-
-        /* Tratamento de dados CM Nova Andradina*/
-        /* Depara Organogramas*/
-        //EnviarOrganogramasDepara enviarOrganogramas = new EnviarOrganogramasDepara(_pgConnection, _token);
-        //await enviarOrganogramas.EnviarOrganogramasCloud();
+        EnviarMovimentos enviarMovimentos = new EnviarMovimentos(_pgConnection, _token);
+        await enviarMovimentos.ProcessarPacotes();
     }
 }

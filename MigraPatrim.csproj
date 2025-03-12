@@ -168,6 +168,7 @@
     <Compile Include="Controller\EnviarTipoBem.cs" />
     <Compile Include="Controller\EnviarTipoComprovante.cs" />
     <Compile Include="Controller\EnviarTipoUtilizacao.cs" />
+    <Compile Include="Controller\ExcluirCabecalhoBaixas.cs" />
     <Compile Include="Controller\ExcluirCabecalhosTransferencia.cs" />
     <Compile Include="Controller\FinalizarBaixa.cs" />
     <Compile Include="Controller\TombarBens.cs" />

@@ -96,10 +96,12 @@ public class EnviarMovimentos
                     string resposta = await response.Content.ReadAsStringAsync();
                     await AtualizarIdCloud(dadosAtualiza["tabela"], int.Parse(dadosAtualiza["id_registro"]), resposta);
                 }
+                await Task.Delay(19000);
                 return true;
             }
 
             Console.WriteLine($"❌ Erro {response.StatusCode} ao enviar para {url}");
+            await Task.Delay(5000);
         }
         catch (Exception ex)
         {
@@ -207,7 +209,7 @@ public class EnviarMovimentos
             {
                 responsavel = new ResponsavelEstornoBaixaPOST_API_TELA
                 {
-                    id = 42233978
+                    id = 42398724
                 },
                 baixa = new BaixaEstornoBaixaPOST_API_TELA
                 {
@@ -251,10 +253,15 @@ public class EnviarMovimentos
             string mesAno = data.ToString("yyyy-MM");
             if (await TodosOsDiasDoMesForamEnviados(mesAno))
             {
+                HashSet<int> depreciacoesFinalizadas = new HashSet<int>();
                 foreach (var dep in depreciacoes)
                 {
-                    string url = $"https://patrimonio.betha.cloud/patrimonio-services/api/depreciacoes/{dep.id_cloud_depreciacao}/finalizar/";
-                    await EnviarParaApi(false, new Dictionary<string, string>(), url, new { mensagem = "Finalização do pacote de depreciação" });
+                    if (!depreciacoesFinalizadas.Contains(dep.id_cloud_depreciacao))
+                    {
+                        string url = $"https://patrimonio.betha.cloud/patrimonio-services/api/depreciacoes/{dep.id_cloud_depreciacao}/finalizar/";
+                        await EnviarParaApi(false, new Dictionary<string, string>(), url, new { mensagem = "Finalização do pacote de depreciação" });
+                        depreciacoesFinalizadas.Add(dep.id_cloud_depreciacao);
+                    }
                 }
             }
             else
@@ -285,7 +292,7 @@ public class EnviarMovimentos
                 baixasFinalizadas.Add(baixa.id_cloud_baixa);
             }
         }
-
+        await AtualizarEstornos(baixas);
         Console.WriteLine("🎉 Todos os pacotes foram finalizados!");
     }
 
@@ -349,6 +356,40 @@ public class EnviarMovimentos
         {
             Console.WriteLine($"❌ Erro ao atualizar ID Cloud para {tipo} {id}: {ex.Message}");
             return string.Empty;
+        }
+    }
+
+    private async Task AtualizarEstornos(List<BaixaBem> baixas)
+    {
+        Console.WriteLine("🔄 Atualizando estornos de baixas...");
+
+        foreach (var baixa in baixas)
+        {
+            try
+            {
+                const string updateQuery = @"
+                UPDATE estornos_baixas_cloud e
+                    SET id_cloud_baixa = b.id_cloud_baixa, id_cloud_bem = b.id_cloud_bem
+                    FROM baixas_cloud b
+                    WHERE b.i_baixa = e.i_baixa and b.i_bem = e.i_bem;
+            ";
+
+                using var connection = _pgConnection.GetConnection();
+                var resultado = await connection.ExecuteAsync(updateQuery);
+
+                if (resultado > 0)
+                {
+                    Console.WriteLine($"✅ Estornos atualizados com sucesso para a baixa {baixa.id_cloud_baixa}.");
+                }
+                else
+                {
+                    Console.WriteLine($"⚠️ Nenhum estorno encontrado para a baixa {baixa.id_cloud_baixa}.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Erro ao atualizar estorno para baixa {baixa.id_cloud_baixa}: {ex.Message}");
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ public class EnviarCabecalhoBaixa
 
     public async Task<List<BaixasCabecalho>> BuscarCabecalhoBaixa()
     {
-        const string query = "SELECT * FROM baixa_cabecalho_cloud WHERE id_cloud = '' ORDER BY ano, mes, i_motivo;";
+        const string query = "SELECT * FROM baixa_cabecalho_cloud ORDER BY ano, mes, i_motivo;";
         try
         {
             using var connection = _pgConnection.GetConnection();

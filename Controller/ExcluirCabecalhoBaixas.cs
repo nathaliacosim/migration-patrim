@@ -3,70 +3,72 @@ using MigraPatrim.Connections;
 using MigraPatrim.Request;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MigraPatrim.Controller;
 
-public class ExcluirCabecalhosTransferencia
+public class ExcluirCabecalhoBaixas
 {
     private readonly PgConnect _pgConnection;
     private readonly string _token;
 
-    public ExcluirCabecalhosTransferencia(PgConnect pgConnection, string token)
+    public ExcluirCabecalhoBaixas(PgConnect pgConnection, string token)
     {
         _pgConnection = pgConnection;
         _token = token;
     }
 
-    public async Task<List<Models.ModelPostgres.TransferenciaCabecalho>> BuscarCabecalhoTR()
+    public async Task<List<Models.ModelPostgres.BaixasCabecalho>> BuscarCabecalhoBX()
     {
-        const string query = "SELECT * FROM public.transferencia_cabecalho_cloud;";
+        const string query = "SELECT * FROM public.baixa_cabecalho_cloud;";
         try
         {
             Console.WriteLine("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-            Console.WriteLine(" 🔍  INICIANDO BUSCA DE CABEÇALHOS DE TRANSFERÊNCIAS...");
+            Console.WriteLine(" 🔍  INICIANDO BUSCA DE CABEÇALHOS DE BAIXAS...");
             Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
             using var connection = _pgConnection.GetConnection();
-            var result = (await connection.QueryAsync<Models.ModelPostgres.TransferenciaCabecalho>(query)).AsList();
+            var result = (await connection.QueryAsync<Models.ModelPostgres.BaixasCabecalho>(query)).AsList();
 
-            Console.WriteLine($" ✅  {result.Count} registros encontrados na tabela transferencia_cabecalho_cloud.");
+            Console.WriteLine($" ✅  {result.Count} registros encontrados na tabela baixa_cabecalho_cloud.");
             Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
             return result;
         }
         catch (Exception ex)
         {
-            Console.WriteLine("❌  ERRO AO BUSCAR OS CABEÇALHOS DE TRANSFERÊNCIAS!");
+            Console.WriteLine("❌  ERRO AO BUSCAR OS CABEÇALHOS DE BAIXAS!");
             Console.WriteLine($"   → {ex.Message}");
             Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-            return new List<Models.ModelPostgres.TransferenciaCabecalho>();
+            return new List<Models.ModelPostgres.BaixasCabecalho>();
         }
     }
 
-    public async Task<List<string>> ExcluirCabecalhoTR()
+    public async Task<List<string>> ExcluirCabecalhoBX()
     {
         Console.WriteLine("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         Console.WriteLine(" 🗑️  INICIANDO PROCESSO DE EXCLUSÃO...");
         Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
-        var tipos = await BuscarCabecalhoTR();
+        var tipos = await BuscarCabecalhoBX();
         var lotesIds = new List<string>();
 
         if (tipos.Count == 0)
         {
-            Console.WriteLine("⚠️  Nenhum cabeçalho de transferência encontrado para exclusão.");
+            Console.WriteLine("⚠️  Nenhum cabeçalho de baixa encontrado para exclusão.");
             Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
             return lotesIds;
         }
 
         foreach (var item in tipos)
         {
-            var url_base = $"https://patrimonio.betha.cloud/patrimonio-services/api/transferencia/{item.id_cloud}";
-            Console.WriteLine($" 🔹  Excluindo cabeçalho de transferência com ID {item.id_cloud}...");
+            var url_base = $"https://patrimonio.betha.cloud/patrimonio-services/api/baixas/{item.id_cloud}";
+            Console.WriteLine($" 🔹  Excluindo cabeçalho de baixa com ID {item.id_cloud}...");
             Delete(url_base);
         }
 
-        Console.WriteLine("✅  Todos os cabeçalhos de transferências foram excluídos com sucesso!");
+        Console.WriteLine("✅  Todos os cabeçalhos de baixas foram excluídos com sucesso!");
         Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         return lotesIds;
     }

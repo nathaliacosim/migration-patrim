@@ -17,7 +17,10 @@ public class RemoveDados
 
     public async Task Executar()
     {
-        //ExcluirCabecalhosTransferencia excluirCabecalhosTransferencia = new ExcluirCabecalhosTransferencia(_pgConnection, _token);
-        //await excluirCabecalhosTransferencia.ExcluirCabecalhoTR();
+        ExcluirCabecalhosTransferencia excluirCabecalhosTransferencia = new ExcluirCabecalhosTransferencia(_pgConnection, _token);
+        await excluirCabecalhosTransferencia.ExcluirCabecalhoTR();
+
+        //ExcluirCabecalhoBaixas excluirCabecalhoBaixas = new ExcluirCabecalhoBaixas(_pgConnection, _token);
+        //await excluirCabecalhoBaixas.ExcluirCabecalhoBX();
     }
 }
