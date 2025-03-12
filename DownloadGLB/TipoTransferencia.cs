@@ -1,12 +1,12 @@
-﻿using MigraPatrim.Connections;
-using MigraPatrim.Models.ModelCloud;
+﻿using migracao-patrim.Connections;
+using migracao-patrim.Models.ModelCloud;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.DownloadGLB;
+namespace migracao-patrim.DownloadGLB;
 
 public class TipoTransferencia
 {

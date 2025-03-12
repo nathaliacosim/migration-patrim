@@ -1,4 +1,4 @@
-﻿namespace MigraPatrim.Models.ModelPostgres;
+﻿namespace migracao-patrim.Models.ModelPostgres;
 
 public class ConfiguracaoOrganograma
 {

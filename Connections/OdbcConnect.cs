@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using System.Data.Odbc;
 
-namespace MigraPatrim.Connections;
+namespace migracao-patrim.Connections;
 
 public class OdbcConnect
 {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MigraPatrim.Connections;
+using migracao-patrim.Connections;
 
-namespace MigraPatrim.DownloadSybase;
+namespace migracao-patrim.DownloadSybase;
 
 public class TipoUtilizacao
 {

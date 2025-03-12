@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using MigraPatrim.Connections;
-using MigraPatrim.Controller;
-using MigraPatrim.DownloadGLB;
+using migracao-patrim.Connections;
+using migracao-patrim.Controller;
+using migracao-patrim.DownloadGLB;
 
-namespace MigraPatrim.UseCase;
+namespace migracao-patrim.UseCase;
 
 public class DownloadCloud
 {

@@ -1,8 +1,8 @@
-﻿using MigraPatrim.Request;
+﻿using migracao-patrim.Request;
 using System;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.Request;
+namespace migracao-patrim.Request;
 
 public class PostRequest
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.Models.ModelPostgres;
+namespace migracao-patrim.Models.ModelPostgres;
 
 public class BaixaBem
 {

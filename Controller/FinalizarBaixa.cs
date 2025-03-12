@@ -1,11 +1,11 @@
 ﻿using Dapper;
-using MigraPatrim.Connections;
-using MigraPatrim.Request;
+using migracao-patrim.Connections;
+using migracao-patrim.Request;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.Controller;
+namespace migracao-patrim.Controller;
 
 public class FinalizarBaixa
 {

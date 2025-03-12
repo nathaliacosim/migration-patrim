@@ -1,14 +1,14 @@
 ﻿using Dapper;
-using MigraPatrim.Connections;
-using MigraPatrim.Models.ModelPostgres;
-using MigraPatrim.Models.ModelSybase;
+using migracao-patrim.Connections;
+using migracao-patrim.Models.ModelPostgres;
+using migracao-patrim.Models.ModelSybase;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.DownloadSybase;
+namespace migracao-patrim.DownloadSybase;
 
 public class EspecieBem
 {
@@ -49,17 +49,17 @@ public class EspecieBem
               ORDER BY descricao;"
         );
 
-    public async Task<List<MigraPatrim.Models.ModelPostgres.GrupoBem>> BuscarTodosGrupoBens()
+    public async Task<List<migracao-patrim.Models.ModelPostgres.GrupoBem>> BuscarTodosGrupoBens()
     {
         try
         {
             using var connection = _pgConnection.GetConnection();
-            return (await connection.QueryAsync<MigraPatrim.Models.ModelPostgres.GrupoBem>("SELECT * FROM grupo_bem_cloud;")).AsList();    
+            return (await connection.QueryAsync<migracao-patrim.Models.ModelPostgres.GrupoBem>("SELECT * FROM grupo_bem_cloud;")).AsList();    
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Erro ao buscar grupo_bem_cloud: {ex.Message}");
-            return new List<MigraPatrim.Models.ModelPostgres.GrupoBem>();
+            return new List<migracao-patrim.Models.ModelPostgres.GrupoBem>();
         }
     }
 

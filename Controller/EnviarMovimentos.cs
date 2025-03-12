@@ -1,7 +1,7 @@
 ﻿using Dapper;
-using MigraPatrim.Connections;
-using MigraPatrim.Models.ModelCloud;
-using MigraPatrim.Models.ModelPostgres;
+using migracao-patrim.Connections;
+using migracao-patrim.Models.ModelCloud;
+using migracao-patrim.Models.ModelPostgres;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.Controller;
+namespace migracao-patrim.Controller;
 
 public class EnviarMovimentos
 {

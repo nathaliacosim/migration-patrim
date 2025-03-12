@@ -1,8 +1,8 @@
-﻿using MigraPatrim.Connections;
-using MigraPatrim.Controller;
+﻿using migracao-patrim.Connections;
+using migracao-patrim.Controller;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.UseCase;
+namespace migracao-patrim.UseCase;
 
 public class RemoveDados
 {

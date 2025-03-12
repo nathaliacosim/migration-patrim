@@ -2,10 +2,10 @@
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
-using MigraPatrim.Connections;
-using MigraPatrim.UseCase;
+using migracao-patrim.Connections;
+using migracao-patrim.UseCase;
 
-namespace MigraPatrim;
+namespace migracao-patrim;
 
 public class Program
 {

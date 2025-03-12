@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using MigraPatrim.Connections;
-using MigraPatrim.DownloadSybase;
+using migracao-patrim.Connections;
+using migracao-patrim.DownloadSybase;
 
-namespace MigraPatrim.UseCase;
+namespace migracao-patrim.UseCase;
 
 public class Configuracoes
 {

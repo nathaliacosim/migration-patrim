@@ -1,13 +1,13 @@
 ﻿using Dapper;
 using System;
 using Newtonsoft.Json;
-using MigraPatrim.Request;
+using migracao-patrim.Request;
 using System.Threading.Tasks;
-using MigraPatrim.Connections;
+using migracao-patrim.Connections;
 using System.Collections.Generic;
-using MigraPatrim.Models.ModelCloud;
+using migracao-patrim.Models.ModelCloud;
 
-namespace MigraPatrim.Controller;
+namespace migracao-patrim.Controller;
 
 public class EnviarConfiguracaoOrganograma
 {

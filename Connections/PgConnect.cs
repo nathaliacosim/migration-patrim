@@ -3,7 +3,7 @@ using System.Data;
 using System.Threading.Tasks;
 using Npgsql;
 
-namespace MigraPatrim.Connections;
+namespace migracao-patrim.Connections;
 
 public class PgConnect
 {

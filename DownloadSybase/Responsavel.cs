@@ -1,12 +1,12 @@
 ﻿using Dapper;
-using MigraPatrim.Connections;
-using MigraPatrim.Models.ModelSybase;
+using migracao-patrim.Connections;
+using migracao-patrim.Models.ModelSybase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.DownloadSybase;
+namespace migracao-patrim.DownloadSybase;
 
 public class Responsavel
 {

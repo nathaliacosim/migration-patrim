@@ -1,4 +1,4 @@
-﻿namespace MigraPatrim.Models.ModelCloud;
+﻿namespace migracao-patrim.Models.ModelCloud;
 
 public class BaixaBaixaBensPOST
 {

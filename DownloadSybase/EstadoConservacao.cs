@@ -1,8 +1,8 @@
 ﻿using System;
-using MigraPatrim.Connections;
+using migracao-patrim.Connections;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.DownloadSybase;
+namespace migracao-patrim.DownloadSybase;
 
 public class EstadoConservacao
 {

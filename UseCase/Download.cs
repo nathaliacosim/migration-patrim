@@ -1,8 +1,8 @@
-﻿using MigraPatrim.Connections;
-using MigraPatrim.DownloadSybase;
+﻿using migracao-patrim.Connections;
+using migracao-patrim.DownloadSybase;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.UseCase;
+namespace migracao-patrim.UseCase;
 
 public class Download
 {

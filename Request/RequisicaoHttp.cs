@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.Request;
+namespace migracao-patrim.Request;
 
 public class RequisicaoHttp
 {

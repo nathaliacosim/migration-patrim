@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MigraPatrim.Models.ModelCloud;
+namespace migracao-patrim.Models.ModelCloud;
 
 public class TipoLogradourosGET
 {

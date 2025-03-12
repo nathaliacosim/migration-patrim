@@ -1,12 +1,12 @@
 ﻿using System;
 using Dapper;
 using System.Threading.Tasks;
-using MigraPatrim.Connections;
+using migracao-patrim.Connections;
 using System.Collections.Generic;
-using MigraPatrim.Models.ModelSybase;
-using MigraPatrim.Models.ModelCloud;
+using migracao-patrim.Models.ModelSybase;
+using migracao-patrim.Models.ModelCloud;
 
-namespace MigraPatrim.DownloadSybase;
+namespace migracao-patrim.DownloadSybase;
 
 public class Exercicios
 {

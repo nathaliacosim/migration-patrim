@@ -1,5 +1,5 @@
-﻿using MigraPatrim.Connections;
-using MigraPatrim.Models.ModelCloud;
+﻿using migracao-patrim.Connections;
+using migracao-patrim.Models.ModelCloud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.DownloadGLB;
+namespace migracao-patrim.DownloadGLB;
 
 public class Bairros
 {

@@ -1,15 +1,15 @@
 ﻿using Dapper;
-using MigraPatrim.Connections;
-using MigraPatrim.Models.ModelCloud;
-using MigraPatrim.Models.ModelPostgres;
-using MigraPatrim.Request;
-using MigraPatrim.Utils;
+using migracao-patrim.Connections;
+using migracao-patrim.Models.ModelCloud;
+using migracao-patrim.Models.ModelPostgres;
+using migracao-patrim.Request;
+using migracao-patrim.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.Controller;
+namespace migracao-patrim.Controller;
 
 public class EnviarFornecedores
 {

@@ -1,11 +1,11 @@
 ﻿using System;
 using Dapper;
 using System.Threading.Tasks;
-using MigraPatrim.Connections;
+using migracao-patrim.Connections;
 using System.Collections.Generic;
-using MigraPatrim.Models.ModelSybase;
+using migracao-patrim.Models.ModelSybase;
 
-namespace MigraPatrim.DownloadSybase;
+namespace migracao-patrim.DownloadSybase;
 
 public class ConfiguracaoOrganograma
 {

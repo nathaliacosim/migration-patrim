@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace MigraPatrim.Utils;
+namespace migracao-patrim.Utils;
 
 public static class StringHelper
 {

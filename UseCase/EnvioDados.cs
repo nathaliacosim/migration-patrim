@@ -1,9 +1,9 @@
-﻿using MigraPatrim.Connections;
-using MigraPatrim.Controller;
-using MigraPatrim.Models.ModelPostgres;
+﻿using migracao-patrim.Connections;
+using migracao-patrim.Controller;
+using migracao-patrim.Models.ModelPostgres;
 using System.Threading.Tasks;
 
-namespace MigraPatrim.UseCase;
+namespace migracao-patrim.UseCase;
 
 public class EnvioDados
 {

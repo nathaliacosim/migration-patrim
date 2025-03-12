@@ -3,11 +3,11 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using MigraPatrim.Connections;
-using MigraPatrim.Models.ModelCloud;
+using migracao-patrim.Connections;
+using migracao-patrim.Models.ModelCloud;
 using System.Linq;
 
-namespace MigraPatrim.DownloadGLB;
+namespace migracao-patrim.DownloadGLB;
 
 public class Estados
 {

@@ -1,4 +1,4 @@
-﻿namespace MigraPatrim.Models.ModelSybase;
+﻿namespace migracao-patrim.Models.ModelSybase;
 
 public class CustoBethaDba
 {
