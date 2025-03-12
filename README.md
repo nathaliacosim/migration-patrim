@@ -23,21 +23,21 @@ A solução foi desenvolvida para garantir um fluxo automatizado e seguro de mig
 
 ```bash
 📦 migracao-patrim
-├── 📁 Connections       # Gerenciamento de conexões com banco de dados
-├── 📁 Controller        # Camada de controle da aplicação
-├── 📁 DownloadGLB       # Processos de download de dados GLB
-├── 📁 DownloadSybase    # Processos de download do Sybase
-├── 📁 Models            # Modelos de dados
-├── 📁 Properties        # Configurações do projeto
-├── 📁 Request           # Camada de requisições e comunicação
-├── 📁 SQL              # Scripts SQL para manipulação dos dados
-├── 📁 UseCase          # Casos de uso e regras de negócio
-├── 📁 Utils            # Métodos auxiliares e utilitários
-├── 📄 Program.cs        # Ponto de entrada da aplicação
-├── 📄 App.config        # Configuração da aplicação
-├── 📄 packages.config   # Dependências do projeto
+├── 📁 Connections         # Gerenciamento de conexões com banco de dados
+├── 📁 Controller          # Camada de controle da aplicação
+├── 📁 DownloadGLB         # Processos de download de dados GLB
+├── 📁 DownloadSybase      # Processos de download do Sybase
+├── 📁 Models              # Modelos de dados
+├── 📁 Properties          # Configurações do projeto
+├── 📁 Request             # Camada de requisições e comunicação
+├── 📁 SQL                 # Você pode criar seus Scripts SQL para manipulação dos dados
+├── 📁 UseCase             # Casos de uso e regras de negócio
+├── 📁 Utils               # Métodos auxiliares e utilitários
+├── 📄 Program.cs          # Ponto de entrada da aplicação
+├── 📄 App.config          # Configuração da aplicação
+├── 📄 packages.config     # Dependências do projeto
 ├── 📄 migracao-patrim.sln # Solução do Visual Studio
-├── 📄 README.md         # Documentação do projeto
+├── 📄 README.md           # Documentação do projeto
 ```
 
 ## 🔄 Fluxo de Funcionamento
