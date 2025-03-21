@@ -1,7 +1,7 @@
 ﻿using Dapper;
-using migracao-patrim.Connections;
-using migracao-patrim.Models.ModelCloud;
-using migracao-patrim.Models.ModelPostgres;
+using MigraPatrim.Connections;
+using MigraPatrim.Models.ModelCloud;
+using MigraPatrim.Models.ModelPostgres;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace migracao-patrim.Controller;
+namespace MigraPatrim.Controller;
 
 public class EnviarMovimentos
 {
@@ -24,7 +24,7 @@ public class EnviarMovimentos
         _token = token;
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_token}");
-    }    
+    }
 
     public async Task<List<string>> ObterMesesComMovimentacao()
     {
@@ -43,7 +43,7 @@ public class EnviarMovimentos
         try
         {
             using var connection = _pgConnection.GetConnection();
-            var meses = await connection.QueryAsync<string>(query);
+            var meses = await connection.QueryAsync<string>(query).ConfigureAwait(false);
             return meses.ToList();
         }
         catch (Exception ex)
@@ -58,7 +58,7 @@ public class EnviarMovimentos
         try
         {
             using var connection = _pgConnection.GetConnection();
-            return (await connection.QueryAsync<T>(query, parametros)).AsList();
+            return (await connection.QueryAsync<T>(query, parametros).ConfigureAwait(false)).AsList();
         }
         catch (Exception ex)
         {
@@ -68,40 +68,40 @@ public class EnviarMovimentos
     }
 
     public async Task<List<BaixaBem>> BuscaBaixas(string data) =>
-        await BuscarDados<BaixaBem>("SELECT * FROM baixas_cloud WHERE data_baixa = @data", new { data });
+        await BuscarDados<BaixaBem>("SELECT * FROM baixas_cloud WHERE data_baixa = @data", new { data }).ConfigureAwait(false);
 
     public async Task<List<DepreciacaoBem>> BuscaDepreciacoes(string data) =>
-        await BuscarDados<DepreciacaoBem>("SELECT * FROM depreciacoes_cloud WHERE data_depreciacao = @data", new { data });
+        await BuscarDados<DepreciacaoBem>("SELECT * FROM depreciacoes_cloud WHERE data_depreciacao = @data", new { data }).ConfigureAwait(false);
 
     public async Task<List<TransferenciaBem>> BuscaTransferencias(string data) =>
-        await BuscarDados<TransferenciaBem>("SELECT * FROM transferencias_cloud WHERE data_movimento = @data", new { data });
+        await BuscarDados<TransferenciaBem>("SELECT * FROM transferencias_cloud WHERE data_movimento = @data", new { data }).ConfigureAwait(false);
 
     public async Task<List<BaixaBemEstorno>> BuscaEstornosBaixa(string data) =>
-        await BuscarDados<BaixaBemEstorno>("SELECT * FROM estornos_baixas_cloud WHERE data_estorno = @data", new { data });
+        await BuscarDados<BaixaBemEstorno>("SELECT * FROM estornos_baixas_cloud WHERE data_estorno = @data", new { data }).ConfigureAwait(false);
 
-    public async Task<bool> EnviarParaApi(bool atualizar, Dictionary<string, string> dadosAtualiza, string url, object body, int tentativas = 3)
+    public async Task<bool> EnviarParaApi(bool atualizar, Dictionary<string, string> dadosAtualiza, int delay, string url, object body, int tentativas = 3)
     {
         try
         {
             Console.WriteLine($"🚀 Enviando requisição para {url}...");
             var jsonContent = JsonSerializer.Serialize(body);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync(url, content);
+            var response = await _httpClient.PostAsync(url, content).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine($"✅ Envio bem-sucedido para {url}!");
                 if (atualizar)
                 {
-                    string resposta = await response.Content.ReadAsStringAsync();
-                    await AtualizarIdCloud(dadosAtualiza["tabela"], int.Parse(dadosAtualiza["id_registro"]), resposta);
+                    string resposta = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    await AtualizarIdCloud(dadosAtualiza["tabela"], int.Parse(dadosAtualiza["id_registro"]), resposta).ConfigureAwait(false);
                 }
-                await Task.Delay(19000);
+                await Task.Delay(delay).ConfigureAwait(false);
                 return true;
             }
 
             Console.WriteLine($"❌ Erro {response.StatusCode} ao enviar para {url}");
-            await Task.Delay(5000);
+            await Task.Delay(5000).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
@@ -109,11 +109,64 @@ public class EnviarMovimentos
             if (tentativas > 1)
             {
                 Console.WriteLine($"⏳ Tentando novamente ({4 - tentativas}/3)...");
-                await Task.Delay(2000);
-                return await EnviarParaApi(atualizar, dadosAtualiza, url, body, tentativas - 1);
+                await Task.Delay(2000).ConfigureAwait(false);
+                return await EnviarParaApi(atualizar, dadosAtualiza, delay, url, body, tentativas - 1).ConfigureAwait(false);
             }
         }
         return false;
+    }
+
+    public async Task<bool> ValidarBemAsync(string idCloudBem, string siglaMovimento, string idTransferencia)
+    {
+        var url = $"https://patrimonio.betha.cloud/api/bens/{idCloudBem}";
+        var response = await _httpClient.GetAsync(url).ConfigureAwait(false);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            Console.WriteLine($"Erro ao buscar bem {idCloudBem}: {response.StatusCode}");
+            return false;
+        }
+
+        var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        var bemApi = JsonSerializer.Deserialize<BensGET>(responseBody);
+
+        if (bemApi?.content == null || bemApi.content.Count == 0)
+        {
+            Console.WriteLine($"Nenhum dado encontrado para o bem {idCloudBem}");
+            return false;
+        }
+
+        using var connection = _pgConnection.GetConnection();
+        var idRegistro = await connection.QueryFirstOrDefaultAsync<string>(
+            "SELECT id_cloud_registro FROM transferencia_cabecalho_cloud WHERE id_cloud = @id_cloud",
+            new { id_cloud = idTransferencia }
+        ).ConfigureAwait(false);
+
+        if (string.IsNullOrEmpty(idRegistro))
+        {
+            Console.WriteLine("Nenhum registro encontrado para a transferência.");
+            return false;
+        }
+
+        var responsavel = bemApi.content[0]?.responsavel?.id != null ? bemApi.content[0].responsavel.id.ToString() : null;
+        var localizacao = bemApi.content[0]?.localizacaoFisica?.id != null ? bemApi.content[0].localizacaoFisica.id.ToString() : null;
+        var centroCusto = bemApi.content[0]?.organograma?.id != null ? bemApi.content[0].organograma.id.ToString() : null;
+        var grupo = bemApi.content[0]?.grupoBem?.id != null ? bemApi.content[0].grupoBem.id.ToString() : null;
+
+        bool precisaTransferir = siglaMovimento switch
+        {
+            "R" => responsavel != idRegistro,
+            "C" => centroCusto != idRegistro,
+            "N" => grupo != idRegistro,
+            "L" or "F" => localizacao != idRegistro,
+            _ => throw new ArgumentException("Sigla de movimento inválida.")
+        };
+
+        Console.WriteLine(precisaTransferir
+            ? "O registro precisa ser transferido."
+            : "O registro não precisa ser transferido pois já está.");
+
+        return precisaTransferir;
     }
 
     public async Task CriarPacote(string data,
@@ -124,121 +177,116 @@ public class EnviarMovimentos
     {
         Console.WriteLine($"📦 Criando pacote para a data {data}...");
 
-        // Processa Depreciações
+        await ProcessarDepreciacoes(depreciacoes).ConfigureAwait(false);
+        await ProcessarTransferencias(transferencias).ConfigureAwait(false);
+        await ProcessarBaixas(baixas).ConfigureAwait(false);
+        await ProcessarEstornos(estornos).ConfigureAwait(false);
+
+        Console.WriteLine($"✅ Todos os bens da data {data} foram adicionados aos pacotes.");
+    }
+
+    private async Task ProcessarDepreciacoes(List<DepreciacaoBem> depreciacoes)
+    {
         foreach (var dep in depreciacoes)
         {
             string url = $"https://patrimonio.betha.cloud/patrimonio-services/api/depreciacoes/{dep.id_cloud_depreciacao}/bens/";
             var body = new DepreciacaoBemPOST
             {
-                depreciacao = new DepreciacaoDepreciacaoBemPOST
-                {
-                    id = dep.id_cloud_depreciacao
-                },
-                bem = new BemDepreciacaoBemPOST
-                {
-                    id = dep.id_cloud_bem
-                },
+                depreciacao = new DepreciacaoDepreciacaoBemPOST { id = dep.id_cloud_depreciacao },
+                bem = new BemDepreciacaoBemPOST { id = dep.id_cloud_bem },
                 vlDepreciado = dep.valor_depreciado,
                 notaExplicativa = ""
             };
 
-            Dictionary<string, string> mapaAtualizacao = new Dictionary<string, string>
+            var mapaAtualizacao = new Dictionary<string, string>
             {
                 { "tabela", "D" },
                 { "id_registro", dep.id.ToString() }
             };
 
-            await EnviarParaApi(true, mapaAtualizacao, url, body);
+            await EnviarParaApi(true, mapaAtualizacao, 1000, url, body).ConfigureAwait(false);
         }
+    }
 
-        // Processa Transferências
+    private async Task ProcessarTransferencias(List<TransferenciaBem> transferencias)
+    {
         foreach (var transf in transferencias)
         {
-            string url = $"https://patrimonio.betha.cloud/patrimonio-services/api/transferencias/{transf.id_cloud_transferencia}/bens";
-            var body = new TransferenciaBemPOST
+            var enviarBem = await ValidarBemAsync(transf.id_cloud_bem.ToString(), transf.sigla_movimento, transf.id_cloud_transferencia.ToString()).ConfigureAwait(false);
+            if (enviarBem)
             {
-                bem = new BemTransferenciaBemPOST
+                string url = $"https://patrimonio.betha.cloud/patrimonio-services/api/transferencias/{transf.id_cloud_transferencia}/bens";
+                var body = new TransferenciaBemPOST
                 {
-                    id = transf.id_cloud_bem
-                },
-                transferencia = new TransferenciaTransferenciaBemPOST
-                {
-                    id = transf.id_cloud_transferencia
-                }
-            };
+                    bem = new BemTransferenciaBemPOST { id = transf.id_cloud_bem },
+                    transferencia = new TransferenciaTransferenciaBemPOST { id = transf.id_cloud_transferencia }
+                };
 
-            Dictionary<string, string> mapaAtualizacao = new Dictionary<string, string>
+                var mapaAtualizacao = new Dictionary<string, string>
+                {
+                    { "tabela", "T" },
+                    { "id_registro", transf.id.ToString() }
+                };
+
+                await EnviarParaApi(true, mapaAtualizacao, 1000, url, body).ConfigureAwait(false);
+            }
+            else
             {
-                { "tabela", "T" },
-                { "id_registro", transf.id.ToString() }
-            };
-
-            await EnviarParaApi(true, mapaAtualizacao, url, body);
+                Console.WriteLine($"⚠️ O bem {transf.id_cloud_bem} não precisa ser transferido. Pulando...");
+            }
         }
+    }
 
-        // Processa Baixas
+    private async Task ProcessarBaixas(List<BaixaBem> baixas)
+    {
         foreach (var baixa in baixas)
         {
             string url = $"https://patrimonio.betha.cloud/patrimonio-services/api/baixas/{baixa.id_cloud_baixa}/bens/";
             var body = new BaixaBensPOST
             {
                 notaExplicativa = "",
-                baixa = new BaixaBaixaBensPOST
-                {
-                    id = baixa.id_cloud_baixa
-                },
-                bem = new BemBaixaBensPOST
-                {
-                    id = baixa.id_cloud_bem
-                }
+                baixa = new BaixaBaixaBensPOST { id = baixa.id_cloud_baixa },
+                bem = new BemBaixaBensPOST { id = baixa.id_cloud_bem }
             };
 
-            Dictionary<string, string> mapaAtualizacao = new Dictionary<string, string>
+            var mapaAtualizacao = new Dictionary<string, string>
             {
                 { "tabela", "B" },
                 { "id_registro", baixa.id.ToString() }
             };
 
-            await EnviarParaApi(true, mapaAtualizacao, url, body);
+            await EnviarParaApi(true, mapaAtualizacao, 1000, url, body).ConfigureAwait(false);
         }
+    }
 
+    private async Task ProcessarEstornos(List<BaixaBemEstorno> estornos)
+    {
         foreach (var estorno in estornos)
         {
             string url = $"https://api.patrimonio.betha.cloud/patrimonio/api/baixas/{estorno.id_cloud_baixa}/estorno";
             var body = new EstornoBaixaPOST_API_TELA
             {
-                responsavel = new ResponsavelEstornoBaixaPOST_API_TELA
-                {
-                    id = 42398724
-                },
-                baixa = new BaixaEstornoBaixaPOST_API_TELA
-                {
-                    id = estorno.id_cloud_baixa
-                },
+                responsavel = new ResponsavelEstornoBaixaPOST_API_TELA { id = 42398724 },
+                baixa = new BaixaEstornoBaixaPOST_API_TELA { id = estorno.id_cloud_baixa },
                 dataEstorno = estorno.data_estorno + " 00:00:00",
                 motivo = "ESTORNO DESKTOP"
             };
 
-            Dictionary<string, string> mapaAtualizacao = new Dictionary<string, string>
+            var mapaAtualizacao = new Dictionary<string, string>
             {
                 { "tabela", "E" },
                 { "id_registro", estorno.id.ToString() }
             };
 
-            await EnviarParaApi(true, mapaAtualizacao, url, body);
+            await EnviarParaApi(true, mapaAtualizacao, 1000, url, body).ConfigureAwait(false);
         }
-
-        Console.WriteLine($"✅ Todos os bens da data {data} foram adicionados aos pacotes.");
-
-        // Agora finaliza os pacotes
-        await FinalizarPacote(depreciacoes, transferencias, baixas);
     }
 
     private async Task<bool> TodosOsDiasDoMesForamEnviados(string mesAno)
     {
         const string query = "SELECT DISTINCT to_char(TO_DATE(data_depreciacao, 'YYYY-MM-DD'), 'YYYY-MM') as mes_ano FROM depreciacoes_cloud";
         using var connection = _pgConnection.GetConnection();
-        var mesesEnviados = await connection.QueryAsync<string>(query);
+        var mesesEnviados = await connection.QueryAsync<string>(query).ConfigureAwait(false);
         return mesesEnviados.Contains(mesAno);
     }
 
@@ -251,7 +299,7 @@ public class EnviarMovimentos
         if (depreciacoes.Any() && DateTime.TryParseExact(depreciacoes.First().data_depreciacao, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out DateTime data))
         {
             string mesAno = data.ToString("yyyy-MM");
-            if (await TodosOsDiasDoMesForamEnviados(mesAno))
+            if (await TodosOsDiasDoMesForamEnviados(mesAno).ConfigureAwait(false))
             {
                 HashSet<int> depreciacoesFinalizadas = new HashSet<int>();
                 foreach (var dep in depreciacoes)
@@ -259,7 +307,7 @@ public class EnviarMovimentos
                     if (!depreciacoesFinalizadas.Contains(dep.id_cloud_depreciacao))
                     {
                         string url = $"https://patrimonio.betha.cloud/patrimonio-services/api/depreciacoes/{dep.id_cloud_depreciacao}/finalizar/";
-                        await EnviarParaApi(false, new Dictionary<string, string>(), url, new { mensagem = "Finalização do pacote de depreciação" });
+                        await EnviarParaApi(false, new Dictionary<string, string>(), 1000, url, new { mensagem = "Finalização do pacote de depreciação" }).ConfigureAwait(false);
                         depreciacoesFinalizadas.Add(dep.id_cloud_depreciacao);
                     }
                 }
@@ -278,7 +326,7 @@ public class EnviarMovimentos
             if (!transferenciasFinalizadas.Contains(transf.id_cloud_transferencia))
             {
                 string url = $"https://patrimonio.betha.cloud/patrimonio-services/api/transferencia/{transf.id_cloud_transferencia}/finalizar/";
-                await EnviarParaApi(false, new Dictionary<string, string>(), url, new { mensagem = "Finalização do pacote de transferência" });
+                await EnviarParaApi(false, new Dictionary<string, string>(), 15000, url, new { mensagem = "Finalização do pacote de transferência" }).ConfigureAwait(false);
                 transferenciasFinalizadas.Add(transf.id_cloud_transferencia);
             }
         }
@@ -288,31 +336,31 @@ public class EnviarMovimentos
             if (!baixasFinalizadas.Contains(baixa.id_cloud_baixa))
             {
                 string url = $"https://patrimonio.betha.cloud/patrimonio-services/api/baixas/{baixa.id_cloud_baixa}/finalizada/";
-                await EnviarParaApi(false, new Dictionary<string, string>(), url, new { mensagem = "Finalização do pacote de baixa" });
+                await EnviarParaApi(false, new Dictionary<string, string>(), 1000, url, new { mensagem = "Finalização do pacote de baixa" }).ConfigureAwait(false);
                 baixasFinalizadas.Add(baixa.id_cloud_baixa);
             }
         }
-        await AtualizarEstornos(baixas);
+        await AtualizarEstornos(baixas).ConfigureAwait(false);
         Console.WriteLine("🎉 Todos os pacotes foram finalizados!");
     }
 
     public async Task ProcessarPacotes()
     {
-        var mesesComMovimentacao = await ObterMesesComMovimentacao();
+        var mesesComMovimentacao = await ObterMesesComMovimentacao().ConfigureAwait(false);
         foreach (var mesAno in mesesComMovimentacao)
         {
             Console.WriteLine($"📅 Processando movimentações para {mesAno}...");
             for (int dia = 1; dia <= DateTime.DaysInMonth(int.Parse(mesAno.Substring(0, 4)), int.Parse(mesAno.Substring(5, 2))); dia++)
             {
                 string data = $"{mesAno}-{dia:D2}";
-                var depreciacoes = await BuscaDepreciacoes(data);
-                var transferencias = await BuscaTransferencias(data);
-                var baixas = await BuscaBaixas(data);
-                var estornos = await BuscaEstornosBaixa(data);
+                var depreciacoes = await BuscaDepreciacoes(data).ConfigureAwait(false);
+                var transferencias = await BuscaTransferencias(data).ConfigureAwait(false);
+                var baixas = await BuscaBaixas(data).ConfigureAwait(false);
+                var estornos = await BuscaEstornosBaixa(data).ConfigureAwait(false);
 
                 if (depreciacoes.Any() || transferencias.Any() || baixas.Any() || estornos.Any())
                 {
-                    await CriarPacote(data, depreciacoes, transferencias, baixas, estornos);
+                    await CriarPacote(data, depreciacoes, transferencias, baixas, estornos).ConfigureAwait(false);
                 }
                 else
                 {
@@ -320,11 +368,10 @@ public class EnviarMovimentos
                 }
             }
 
-            await Task.Delay(1000);
+            await Task.Delay(1000).ConfigureAwait(false);
         }
         Console.WriteLine("🎉 Processamento de pacotes finalizado!");
     }
-
 
     public async Task<string> AtualizarIdCloud(string tipo, int id, string idCloud)
     {
@@ -340,7 +387,7 @@ public class EnviarMovimentos
         try
         {
             using var connection = _pgConnection.GetConnection();
-            var idAtualizado = await connection.ExecuteScalarAsync<string>(query, new { id, idCloud });
+            var idAtualizado = await connection.ExecuteScalarAsync<string>(query, new { id, idCloud }).ConfigureAwait(false);
             if (!string.IsNullOrEmpty(idAtualizado))
             {
                 Console.WriteLine($"🔄 ID Cloud atualizado com sucesso para {tipo} {id}: {idAtualizado} ✔️");
@@ -375,7 +422,7 @@ public class EnviarMovimentos
             ";
 
                 using var connection = _pgConnection.GetConnection();
-                var resultado = await connection.ExecuteAsync(updateQuery);
+                var resultado = await connection.ExecuteAsync(updateQuery).ConfigureAwait(false);
 
                 if (resultado > 0)
                 {
